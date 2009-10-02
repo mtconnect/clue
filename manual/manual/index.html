@@ -1,0 +1,1193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+
+<!--Converted with LaTeX2HTML 2002-2-1 (1.71)
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+<TITLE>MTConnect Developer Documentation</TITLE>
+<META NAME="description" CONTENT="MTConnect Developer Documentation">
+<META NAME="keywords" CONTENT="manual">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<META NAME="Generator" CONTENT="LaTeX2HTML v2002-2-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="manual.css">
+
+</HEAD>
+
+<BODY >
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/opt/local/share/lib/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev_g.png">   
+<BR>
+<BR><BR>
+<!--End of Navigation Panel-->
+<H1 ALIGN="CENTER">MTConnect Developer Documentation</H1><DIV>
+
+<P ALIGN="CENTER"><STRONG>Armando Fox et al.</STRONG></P>
+<P ALIGN="CENTER"><I>MTConnect Consortium</I></P>
+<P ALIGN="CENTER"><STRONG>DRAFT (Fri, 07 Dec 2007)
+</STRONG></P>
+<P ALIGN="LEFT"><SMALL>dk@mtconnect.org</SMALL></P>
+</DIV>
+
+<P>
+<BR>
+
+<H2><A NAME="SECTION00010000000000000000">
+Contents</A>
+</H2>
+<!--Table of Contents-->
+
+<UL>
+<LI><A NAME="tex2html70"
+  HREF="manual.html#SECTION00020000000000000000">Introduction</A>
+<UL>
+<LI><A NAME="tex2html71"
+  HREF="manual.html#SECTION00021000000000000000">What Is MTConnect?</A>
+<LI><A NAME="tex2html72"
+  HREF="manual.html#SECTION00022000000000000000">How to Use This Document</A>
+<LI><A NAME="tex2html73"
+  HREF="manual.html#SECTION00023000000000000000">This Is Not A Spec</A>
+<LI><A NAME="tex2html74"
+  HREF="manual.html#SECTION00024000000000000000">License, Copyright and Trademark Information</A>
+</UL><BR>
+<LI><A NAME="tex2html75"
+  HREF="manual.html#SECTION00030000000000000000">Architectural Overview of MTConnect&nbsp;</A>
+<UL>
+<LI><A NAME="tex2html76"
+  HREF="manual.html#SECTION00031000000000000000">A Note on MTConnect&nbsp;'s ``Native'' Environment</A>
+<LI><A NAME="tex2html77"
+  HREF="manual.html#SECTION00032000000000000000">Architectural Concepts</A>
+<LI><A NAME="tex2html78"
+  HREF="manual.html#SECTION00033000000000000000">Commands</A>
+</UL><BR>
+<LI><A NAME="tex2html79"
+  HREF="manual.html#SECTION00040000000000000000">API's for Application Developers</A>
+<UL>
+<LI><A NAME="tex2html80"
+  HREF="manual.html#SECTION00041000000000000000">REST</A>
+<LI><A NAME="tex2html81"
+  HREF="manual.html#SECTION00042000000000000000">Microsoft .NET Framework</A>
+<LI><A NAME="tex2html82"
+  HREF="manual.html#SECTION00043000000000000000">(Optional) C#/Microsoft .NET CLR</A>
+</UL><BR>
+<LI><A NAME="tex2html83"
+  HREF="manual.html#SECTION00050000000000000000">Example Scenarios</A>
+<UL>
+<LI><A NAME="tex2html84"
+  HREF="manual.html#SECTION00051000000000000000">One Machine</A>
+<LI><A NAME="tex2html85"
+  HREF="manual.html#SECTION00052000000000000000">Multiple Machines</A>
+<LI><A NAME="tex2html86"
+  HREF="manual.html#SECTION00053000000000000000">Advanced example: Synthesizing State</A>
+</UL><BR>
+<LI><A NAME="tex2html87"
+  HREF="manual.html#SECTION00060000000000000000">API's for Adapting Legacy Controllers to MTConnect</A>
+<UL>
+<LI><A NAME="tex2html88"
+  HREF="manual.html#SECTION00061000000000000000">Agent-to-Controller API: Writing a Machine Adapter</A>
+<LI><A NAME="tex2html89"
+  HREF="manual.html#SECTION00062000000000000000">Developing an Equipment Schema</A>
+</UL><BR>
+<LI><A NAME="tex2html90"
+  HREF="manual.html#SECTION00070000000000000000">Manifest of SDK Code Library (What's In the Zip File)</A>
+<UL>
+<LI><A NAME="tex2html91"
+  HREF="manual.html#SECTION00071000000000000000">.Net Classes for MTConnect</A>
+<LI><A NAME="tex2html92"
+  HREF="manual.html#SECTION00072000000000000000">MTConnect Agent (Ruby)</A>
+<LI><A NAME="tex2html93"
+  HREF="manual.html#SECTION00073000000000000000">Schema Builder (mds to xsd)</A>
+<LI><A NAME="tex2html94"
+  HREF="manual.html#SECTION00074000000000000000">lib/rest/</A>
+<LI><A NAME="tex2html95"
+  HREF="manual.html#SECTION00075000000000000000">lib/vb/</A>
+<LI><A NAME="tex2html96"
+  HREF="manual.html#SECTION00076000000000000000">apps/</A>
+<LI><A NAME="tex2html97"
+  HREF="manual.html#SECTION00077000000000000000">adapters/</A>
+</UL><BR>
+<LI><A NAME="tex2html98"
+  HREF="manual.html#SECTION00080000000000000000">Appendix 2: Current Vendor Support for MTConnect</A>
+<UL>
+<LI><A NAME="tex2html99"
+  HREF="manual.html#SECTION00081000000000000000">LinuxCNC: Open Source Enhanced Machine Controller</A>
+<LI><A NAME="tex2html100"
+  HREF="manual.html#SECTION00082000000000000000">Fanuc Connectivity</A>
+<LI><A NAME="tex2html101"
+  HREF="manual.html#SECTION00083000000000000000">IPC-CAMX Connectivity</A>
+<LI><A NAME="tex2html102"
+  HREF="manual.html#SECTION00084000000000000000">ArchRock Sensor Connectivity</A>
+</UL><BR>
+<LI><A NAME="tex2html103"
+  HREF="manual.html#SECTION00090000000000000000">Bibliography</A>
+</UL>
+<!--End of Table of Contents-->
+
+<P>
+
+<H1><A NAME="SECTION00020000000000000000">
+Introduction</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00021000000000000000">
+What Is MTConnect?</A>
+</H2>
+
+<P>
+MTConnect<A NAME="tex2html1"
+  HREF="#foot77"><SUP>1</SUP></A>is a standard that codifies a simple <I>data format</I>, <I>command
+  set</I> and <I>document-oriented protocol</I> for the exchange of
+manufacturing data.  White papers and overview documents describing
+MTConnect conceptually can be found at <TT><A NAME="tex2html3"
+  HREF="http://www.mtconnect.org">http://www.mtconnect.org</A></TT>.
+
+<P>
+The other standards on top of which MTConnect is built are all open
+standards in that they are unencumbered from an intellectual property
+standpoint: specifications for those standards can be freely downloaded
+by anyone, and no royalties are levied against implementors of the
+standards.  The same is true of the MTConnect specification itself.  For
+licensing and legal details, see <TT><A NAME="tex2html4"
+  HREF="http://www.mtconnect.org">http://www.mtconnect.org</A></TT>.
+
+<P>
+
+<H2><A NAME="SECTION00022000000000000000">
+How to Use This Document</A>
+</H2>
+
+<P>
+This document is intended for engineers wishing to use MTConnect in
+their production or prototyping environments.  It explains how to write
+applications and design controllers compatible with MTConnect
+generally. It also describes how to make use of the reference software
+provided in the MTConnect&nbsp;SDK (Software Developers' Kit) specifically;
+this software includes bindings (``glue'') to allow the use of MTConnect
+from a variety of environments and languages, example applications, and
+MTConnect ``adapters'' for equipment provided by several vendors.
+
+<P>
+An outline of the contents of this document follows:
+
+<P>
+
+<OL>
+<LI>Section&nbsp;<A HREF="#sec:arch"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/opt/local/share/lib/latex2html/icons/crossref.png"></A> describes the architectural concepts and
+  components behind MTConnect and should be read by everyone who wants
+  to use it in any way.
+</LI>
+<LI>Section&nbsp;<A HREF="#sec:app">3</A> describes the application programming
+  interfaces (API's) available to developers who wish to write
+  applications that collect and analyze data from MTConnect-compliant
+  equipment, or <I>MTConnect client applications</I>.
+</LI>
+<LI>Section&nbsp;<A HREF="#sec:examples">4</A> contains 
+  documentation and examples for various types of client applications,
+  including Web-based clients, Microsoft Visual Basic and VB.Net
+  clients, and clients written in C/C++/C#.
+</LI>
+<LI>Section&nbsp;<A HREF="#sec:controller">5</A> is intended for developers who have
+  an existing piece of legacy equipment (e.g., a controller or
+  machine-tool simulator) and wish to enable it to participate in an
+  MTConnect environment.
+</LI>
+<LI>Section&nbsp;<A HREF="#sec:manifest">6</A> describes in detail the software
+  contents of the SDK and how they can be used.
+</LI>
+</OL>
+
+<P>
+
+<H2><A NAME="SECTION00023000000000000000">
+This Is Not A Spec</A>
+</H2>
+
+<P>
+The definitive MTConnect specification&nbsp;[#!mtconnect_spec!#]
+can be found at <TT><A NAME="tex2html5"
+  HREF="http://www.mtconnect.org">http://www.mtconnect.org</A></TT>. This
+documentation is aimed at getting developers started quickly. While all
+the examples presented are correct and comply with the MTConnect
+specification as of the time of writing, we do not
+use or describe every feature of the specification here, nor do we
+guarantee that these examples will remain correct as the specification
+evolves. 
+
+<P>
+
+<H2><A NAME="SECTION00024000000000000000">
+License, Copyright and Trademark Information</A>
+</H2>
+
+<P>
+Talk about license, probably some version of BSD license or Creative
+Commons license
+
+<P>
+Visual Basic, VB.NET, C#, Excel, Windows, and Internet Explorer are
+trademarks of Microsoft Corporation.
+
+<P>
+
+<H1><A NAME="SECTION00030000000000000000">
+Architectural Overview of MTConnect&nbsp;</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000">
+A Note on MTConnect&nbsp;'s ``Native'' Environment</A>
+</H2>
+
+<P>
+Although MTConnect&nbsp;'s design permits it to use any communication protocol that
+supports a document-exchange abstraction, its ``native'' communication
+protocol is HTTP (Hypertext Transfer Protocol, the same protocol
+used in the World Wide Web).
+HTTP, in turn, is most frequently layered on top of TCP/IP, the
+reliable-communication networking protocol suite that has dominated
+information technology for the last two decades.  Therefore, throughout
+this document, we will assume unless otherwise noted that all MTConnect&nbsp;
+communication is taking place using HTTP over TCP/IP.  
+
+<P>
+This does not mean that machines and equipment must be retrofitted to
+use HTTP over TCP/IP; on the contrary, MTConnect&nbsp;is
+specifically designed to integrate with legacy equipment that does
+<I>not</I> support those protocols.  Neither does it mean that MTConnect&nbsp;
+client applications must communicate explicitly using HTTP; this SDK
+provides client libraries that insulate the application developer from
+these details.
+
+<P>
+MTConnect&nbsp;data is represented using XML, the eXtensible Markup Language.  The
+specific XML constructs permitted in MTConnect&nbsp;are codified as an XML Schema
+<B>@</B>@@BUG citation.  XML can express a human-readable, ASCII-based
+representation of typed hierarchical data.  Software that wishes to work
+with manufacturing data in a non-XML format--for example, a relational
+database such as MySQL, or a spreadsheet such as Excel--must therefore
+convert data between its ``native'' representation and XML.  Again, the
+MTConnect&nbsp;SDK provides extensive support and libraries to make this very easy
+and to shield many programmers from ever seeing XML at all, while
+maintaining the portability and toolchain advantages of using XML.
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+Architectural Concepts</A>
+</H2>
+
+<P>
+The basic idea behind programming with MTConnect&nbsp;is easily explained in terms
+of these basic concepts:
+
+<P>
+
+<OL>
+<LI>Agent:  an entity that participates in an MTConnect&nbsp;
+  environment.
+</LI>
+<LI>Client: an application that wishes to obtain machine data. Many
+  Clients can collect the same data to do different tasks; any given
+  Client can collect data from many machines simultaneously.
+</LI>
+<LI>Equipment schema: how a piece of equipment, such as a controller
+  attached to a machine tool with various axes and fixtures, is
+  represented in MTConnect&nbsp;; how a client application discovers what
+  measurements are available from a given piece of equipment.
+</LI>
+<LI>Command set: what kinds of requests an MTConnect&nbsp;client
+  application can make in an MTConnect&nbsp;environment.
+</LI>
+<LI>Data representation: In response to requests, machine data
+  (e.g. feed, sensor values, configuration information) is returned to
+  the requesting application. Data representation 
+  refers to the format in which such data is delivered to the requester
+  and how it can be made available to other applications (e.g. analysis
+  in Excel, storage in a database such as Access or SQL Server, etc.).
+</LI>
+</OL>
+
+<P>
+
+<H3><A NAME="SECTION00032100000000000000"></A>
+<A NAME="sec:agent"></A><BR>
+Agents
+</H3>
+
+<P>
+An MTConnect&nbsp;environment is characterized by the presence of one or more MTConnect&nbsp;
+Agents.  An Agent is a software entity that understands MTConnect&nbsp;commands
+and can exchange data using MTConnect&nbsp;'s data representation, typically using
+HTTP over TCP/IP.  Typically, an Agent is the MTConnect&nbsp;world's view of a
+controller or other piece of equipment.  A very simple example ``shop
+floor'' environment, which we'll use for the examples in this section,
+is shown in figure&nbsp;<A HREF="#fig:example_environment">1</A>.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example_environment"></A><A NAME="125"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 1:</STRONG>
+A simple shop-floor environment that includes a machine with
+    an 
+    MTConnect&nbsp;-compliant controller, a machine with a legacy controller that
+    communicates via RS-232, and two data capture and analysis applications.</CAPTION>
+<TR><TD></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+
+<UL>
+<LI>Machine A is a ``legacy'' CNC vertical mill whose controller
+  allows limited 
+  data access via an RS-232 serial port, but does not support Ethernet
+  or TCP/IP and provides no way to run embedded MTConnect&nbsp;Agent
+  software.  Machine B's serial port is connected to a PC running an
+  <I>MTConnect&nbsp;Adapter</I>, which translates commands and data between
+  B's proprietary formats and the MTConnect&nbsp;equivalents and arranges
+  communication to and from B via the serial port.  The combination of B
+  and B's connector form an Agent.
+
+<P>
+</LI>
+<LI>Machine B is an automatic saw
+  equipped with an MTConnect&nbsp;-compliant controller.  The
+  controller has an Ethernet port and a TCP/IP communications stack, and
+  runs embedded software that can directly receive MTConnect&nbsp;commands and
+  exchange MTConnect&nbsp;data via
+  HTTP over TCP/IP.
+
+<P>
+</LI>
+<LI>Two applications are collecting and analyzing data from these
+  machines. One is written in Visual&nbsp;Basic.NET and uses the .NET library
+  included with the MTConnect&nbsp;SDK; this library allows VB programmers to
+  talk to MTConnect&nbsp;Agents without dealing explicitly with HTTP or XML.
+  The other application is written in Java and uses the
+  Java library included with the MTConnect&nbsp;SDK, which provides wrappers
+  around the HTTP and XML facilities that are native to MTConnect&nbsp;.
+
+<P>
+</LI>
+</UL>
+
+<P>
+The basic programming model is therefore: Clients request data from
+Agents; machines unequipped to run an Agent natively can have their
+communication mediated by an MTConnect&nbsp;Adapter.  You can read more about
+Adapters and their use in section&nbsp;<A HREF="#sec:controller">5</A>.
+
+<P>
+
+<H3><A NAME="SECTION00032200000000000000"></A>
+<A NAME="sec:client"></A><BR>
+Client
+</H3>
+
+<P>
+An MTConnect&nbsp;Client is any application that wants to collect machine data.
+The MTConnect&nbsp;SDK provides support for developing these applications in a
+variety of languages and platforms, including C, C++, Java, and any
+language compatible with the .NET framework (Visual Basic.NET, C#, J++,
+etc.) 
+
+<P>
+
+<H3><A NAME="SECTION00032300000000000000">
+Equipment Schema</A>
+</H3>
+
+<P>
+An MTConnect&nbsp;environment is a tree of components, whose ``root'' or topmost
+node is always called Equipment.  (You can think of the Equipment node
+as representing ``the shop floor.'')  The children of Equipment are
+individual machines, and the children of each machine are its
+subassemblies or components.  In the diagram above, the shop floor has
+two machines, a CNC mill and a tool presetter, so they are the two
+children of the Equipment component.
+
+<P>
+Each component of a machine can either be a <I>base</I> component, like
+an axis, or a <I>compound</I> component, which is just made up of other
+components.
+
+<P>
+This hierarchy leads us to the concept of the <I>path</I> to a
+component: the names of all components, starting from the root, that
+must be traversed to reach a particular component (like a file's
+pathname in a Unix or DOS filesystem).  For example, in
+figure&nbsp;<A HREF="#fig:equipment_hierarchy">2</A>, we can represent the path to the
+X-axis component as /Equipment/CNCMill/Axes/XAxis.  In fact, paths in
+MTConnect&nbsp;are represented using the <I>XPath</I> syntax, standardized by
+W3C<A NAME="tex2html7"
+  HREF="#foot214"><SUP>2</SUP></A>, that is specifically
+designed for representing elements in a hierarchical XML document.  
+
+<P>
+The idea of a path is important because, as we'll see, in many cases
+you pass a path to MTConnect&nbsp;to name either a component or a 
+whole group of components. For example, the path /Equipment/CNCMill/Axes
+implicitly includes all of the components /Equipment/CNCMill/Axes:XAxis,
+/Equipment/CNCMill/Axes/YAxis, /Equipment/CNCMill/Axes/ZAxis, and
+/Equipment/CNCMill/Axes/Spindle.  The path /Equipment/CNCMill includes
+all of the above and in addition the separate ``components''
+/Equipment/CNCMill/Temperature and /Equipment/CNCMill/OnTime.  The
+OnTime ``component'' illustrates that ``component'' doesn't necessarily
+imply a physical counterpart--only something that is capable of
+delivering a measurement.
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:equipment_hierarchy"></A><A NAME="215"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 2:</STRONG>
+An example MTConnect component hierarchy for the shop floor
+    depicted in figure&nbsp;<A HREF="#fig:example_environment">1</A>.</CAPTION>
+<TR><TD></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+Each component, in addition to having children, also has several other 
+properties or <I>attributes</I>.  The MTConnect&nbsp;Specification contains a
+complete list, but the most important ones for our purposes are:
+
+<P>
+
+<UL>
+<LI><code>uuid</code>, an identifier that uniquely identifies this component
+  in the universe; for example, it could consist of a manufacturer's
+  serial number plus a manufacturer part number for the component
+  assembly.
+</LI>
+<LI><code>name</code>, a human-readable name describing the component; for
+  example, ZAxis in the diagram above.
+</LI>
+<LI><code>Components</code>, the children of this component. In the above
+  diagram, XAxis, YAxis, ZAxis and Spindle are children of Axes, and
+  Axes is itself a component that is a child of CNCMill.
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00032400000000000000"></A>
+<A NAME="sec:measurements"></A><BR>
+Measurements and Events
+</H3>
+
+<P>
+A <I>measurement</I> is just what it sounds like--the value of some
+component property sampled at some point in time.  The raw value may be
+numeric (e.g., a commanded velocity) or non-numeric (e.g., the name of
+the GCode program currently being executed by a controller).  A more
+precise notion used in MTConnect&nbsp;is that of an <I>event</I>, which is
+basically the act of taking a measurement.  The event includes
+additional information about a measurement, most importantly the time at
+which it was taken (to whatever time resolution is supported by the
+controller).  While the official MTConnect&nbsp;XML Schema distinguished Events
+from Measurements, from the point of view of a developer writing client
+applications the two are inseparable--a Measurement without an Event to
+tell you the timestamp makes no sense, and an Event without a
+corresponding Measurement to report is useless.  So the MTConnect&nbsp;code
+libraries deal primarily with Events.
+
+<P>
+Note that not all components can provide measurements--only those that
+directly correspond to something physical.  For example, the Axes
+component does not itself provide 
+any measurements, but each of its children (XAxis, YAxis, etc.) does.
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+Commands</A>
+</H2>
+
+<P>
+A Client makes requests of an Agent by issuing <I>commands</I> to the
+Agent.  The mechanism by which the commands are communicated depends on
+the programming language and environment of the client;
+section&nbsp;<A HREF="#sec:app">3</A> describes how to do this for various specific
+popular languages and environments.
+
+<P>
+Regardless of how the commands are communicated, there are two basic
+commands.  The <TT>probe</TT> command is used to discover the equipment
+schema corresponding to all or part of the environment (i.e., to ask a
+piece of equipment ``What data can you report?''). The <TT>sample</TT>
+command requests one or more measurement samples from some subtree of
+the equipment schema.  A third pseudo-command <TT>current</TT> is really
+just a special-case form of <TT>sample</TT>.
+
+<P>
+As we said above, each measurement is ``wrapped'' in an Event that also
+includes a timestamp of when it was taken and a measurement sequence
+number.  A limited number of commands is stored up by the MTConnect&nbsp;Agent in
+anticipation of being requested by a Client; when a Client requests
+measurements, it may therefore get not just one, but a set of
+measurements that have been gathered since the last time it asked.  The
+Client can also specify that it wants to jump to a different measurement
+sequence number and start getting data from that point.  The important
+thing is that the Agent is <I>not</I> responsible for long-term storage
+of measurement data; an easy way to accomplish that is to create a
+simple Client that just retrieves events from the Agent and stores them
+in a filesystem or database for archival use.  The SDK includes an
+example of such a client; see section&nbsp;<A HREF="#sec:example_client_archiver"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/opt/local/share/lib/latex2html/icons/crossref.png"></A>.
+
+<P>
+Let's look at each command in turn.
+
+<P>
+
+<H3><A NAME="SECTION00033100000000000000"></A>
+<A NAME="sec:cmd:probe"></A><BR>
+The Probe Command
+</H3>
+
+<P>
+The command <TT>probe(path)</TT> returns the equipment schema for some
+the subset of the MTConnect&nbsp;environment rooted at <TT>path</TT>, which should
+be  an MTConnect&nbsp;path as described above.  The return
+value is the equipment schema subtree (as described above) whose root
+(toplevel node) is the requested path, or an error if no such subtree
+exists.
+Note that <TT>probe("/")</TT> probes the top-level path, which is
+equivalent to ``discovering'' what is in the environment.
+The specific representation (string, XML document object, etc.) of the
+path and the returned hierarchy depends on the 
+client library used (see section&nbsp;<A HREF="#sec:apps"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/opt/local/share/lib/latex2html/icons/crossref.png"></A>).
+
+<P>
+Keep in mind that <TT>probe</TT> doesn't actually return measurements: it
+only returns information describing the <I>structure</I> of the
+equipment and component hierarchy.  This information can be parsed by
+the Client and used to determine what measurements will be requested via
+the <TT>sample</TT> command, for example.
+
+<P>
+Referring back to figure&nbsp;<A HREF="#fig:equipment_hierarchy">2</A>, here is what
+some example calls to <TT>probe</TT> would return:
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER"><A NAME="217"></A>
+<TABLE>
+<CAPTION><STRONG>Table 1:</STRONG>
+Example calls to <TT>probe</TT> based on the equipment hierarchy
+  of figure XXX.</CAPTION>
+<TR><TD><TABLE CELLPADDING=3 BORDER="1">
+<TR><TH ALIGN="LEFT" VALIGN="TOP" WIDTH=200><B>Probe argument</B></TH>
+<TH ALIGN="LEFT" VALIGN="TOP" WIDTH=200><B>Returned hierarchy</B></TH>
+</TR>
+<TR><TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>(examples TBD)</TD>
+<TD ALIGN="LEFT" VALIGN="TOP" WIDTH=200>&nbsp;</TD>
+</TR>
+</TABLE>
+
+<A NAME="tab:probe_examples"></A></TD></TR>
+</TABLE>
+</DIV><P></P><BR>
+
+<P>
+
+<H3><A NAME="SECTION00033200000000000000"></A>
+<A NAME="sec:sample"></A><BR>
+The Sample Command
+</H3>
+
+<P>
+The command <TT>sample(start, count, path [,freq])</TT> is used to
+request measurement samples from a subtree of components.  Just as
+<TT>probe</TT> returns the <I>structure</I> of the equipment hierarchy
+subtree rooted at a path, <TT>probe</TT> returns a set of measurement
+samples for the equipment hierarchy subtree rooted at a path.  The
+<TT>start</TT> argument is the desired starting sequence number of
+measurements; the Client must supply this since there may be multiple
+Clients communicating with a single Agent, and the Agent doesn't
+necessarily keep track of which sequence numbers have been seen by which
+clients.
+
+<P>
+The <TT>count</TT> argument specifies a maximum number of samples to
+return; fewer may be returned if not enough are available (for example,
+if <TT>count</TT> is 100, but fewer than 100 measurements have been
+reported since the desired starting sequence number).  In fact, if there
+are <I>no</I> measurements available matching the given path and
+starting sequence number (perhaps the machine is offline or idle), zero
+events may be returned.
+
+<P>
+The last argument, <TT>freq</TT>, is reserved for future use for
+scenarios in which a Client wishes to continuously receive a streaming
+data feed of specific measurements.  Use of this argument is optional
+(currently its value is ignored) and we won't cover it further in this
+overview.
+
+<P>
+Note that it's possible for a Client to issue <TT>sample</TT> commands
+without ever having issued a <TT>probe</TT> first.  For example, a
+particular Client may be designed to work only with a specific piece of
+equipment, and the equipment's schema may be ``hardwired'' into the
+Client code.  In contrast, a more generic Client, such as a
+monitoring/analysis tool that can be used with a variety of equipment,
+might first do a <TT>probe</TT> to find out what equipment is available
+to be monitored, possibly presenting the human operator with a menu or
+selection list to narrow down what she wishes to see.
+
+<P>
+There is a third command, <TT>current</TT>, which is a simplified version
+of the <TT>sample</TT> command.  <TT>current(path)</TT> returns the
+<I>most recent</I> set of
+measurements associated with the given path, that is, the set of
+measurements with the highest sequence numbers not already seen by this
+Client.  <TT>current</TT> makes it easy to write a program loop that
+repeatedly fetches new measurement values.
+
+<P>
+
+<H3><A NAME="SECTION00033300000000000000">
+Data Representation</A>
+</H3>
+
+<P>
+A measurement is made available via an <I>event</I>, which is
+represented as a class (in the object-oriented programming sense).
+Section&nbsp;<A HREF="#sec:apps"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/opt/local/share/lib/latex2html/icons/crossref.png"></A> describes the specific class members and methods
+for a variety of languages, including Microsoft Common Language Runtime
+with .NET (includes C#, J++, VB.NET, etc.).
+
+<P>
+According to the MTConnect&nbsp;Specification, the Agent returns an XML document
+(whose structure is defined by the MTConnect&nbsp;XML Schema) with a hierarchy of
+components and measurement events embedded in it.  In your client
+application code, you can have access to this document object if you
+want, and parse the fields out yourself.  However, for simplicity, the
+SDK method calls actually return an array of Event objects.  Each Event
+object includes the information you'd have obtained by walking the
+document tree yourself.  For example, consider the following XML
+document returned in response to a <TT>current</TT> command on the
+hypothetical machine represented by the hierarchy in
+figure&nbsp;<A HREF="#fig:equipment_hierarchy">2</A> (we have omitted the XML
+declaration and some other elements for clarity, and numbered the lines
+for reference):  
+
+<P>
+
+<DIV ALIGN="CENTER"><A NAME="fig:example_xml"></A><A NAME="209"></A>
+<TABLE>
+<CAPTION ALIGN="BOTTOM"><STRONG>Figure 3:</STRONG>
+Example XML content of the reply to a Sample event</CAPTION>
+<TR><TD></TD></TR>
+</TABLE>
+</DIV>
+
+<P>
+This is admittedly a bit unwieldy to read--XML is designed to be parsed
+by computers, not people.  But we can see that there are two events
+(measurements) being reported for /CNCMill/Controller: one of them is a
+<TT>Program</TT> event (lines 4-6) reporting that at time 02:20:51.938,
+the controller was executing the program <I>mill1.ngc</I>; at
+02:20:58.331, an Alarm event (lines 7-9) indicates that an ESTOP alarm
+was raised.  And there is one event being reported for /CNCMill/Power
+(since power is modeled as a separate ``component'' independent of the
+controller in our example), namely that the power turned OFF at time
+02:20:51.938 (lines 12-14).
+
+<P>
+To make this hierarchy easier to manage for developers, the SDK
+libraries ``flatten out'' the hierarchy.  If your client application
+received the above in answer to a query, you would have simply received
+an array of three Events, each of which would have separately-filled-in
+fields indicating which component reported the event, what the timestamp
+and sequence number were, and what the value was.  (In this example, the
+values were non-numeric, but the SDK provides methods to extract both
+numeric and non-numeric values from Event objects.)
+
+<P>
+With that in mind, it's time to look at specific code examples.
+
+<H1><A NAME="SECTION00040000000000000000"></A>
+<A NAME="sec:app"></A><BR>
+API's for Application Developers
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+REST</A>
+</H2>
+
+<P>
+REST, or <I>representational state transfer</I> <B>@</B>@@BUG cite is a
+framework and set of guidelines for the exchange of XML documents using
+the URN (Universal Resource Name, similar to a URL) syntax to encode the
+name of the document and the HTTP protocol to encode the operation on
+the document.  
+
+<P>
+Although the MTConnect&nbsp;SDK provides library functions to insulate developers
+of simple client applications from having to deal directly with HTTP and
+XML, it's worth understanding the protocol at this level since the MTConnect&nbsp;
+libraries are just wrappers around this functionality:
+
+<P>
+
+<OL>
+<LI>A REST URI <B>@</B>@@BUG cite is created that encodes the desired command
+  and any arguments.  Paths in the MTConnect&nbsp;equipment schema translate
+  directly to paths in the URI.  Arguments are passed using the usual
+  HTTP URL argument-embedding rules, as in
+  <code>http://mtc.myshop.mycorp.com/sample?start=1&amp;count=1000&amp;path=/Equipment/CNCmill/Controller/Axes</code>
+</LI>
+<LI>The Agent returns an XML document encoding the response.  For a
+  Sample command, the document encodes zero or more Events (like the
+  example in figure&nbsp;<A HREF="#fig:example_xml">3</A>).  For a Probe command, the
+  document encodes a list of zero or more Components comprised by the
+  subtree rooted at the path that is the argument of the Probe.
+</LI>
+</OL>
+
+<P>
+You can issue commands using the REST API from any application or
+framework that lets you communicate with an HTTP server (e.g. using the
+<TT>System.Net</TT> classes in the Microsoft Base Class Libraries), and
+you can parse the reply using one of the many available libraries for
+XML parsing. The Microsoft .NET Framework Base Class Library includes
+XML parsing in the <TT>System.XML</TT> class package; Java includes SAX
+parsing in the standard Java classes and also has the open-source
+<I>dom4j</I> parser available; C and Perl programmers can use the
+open-source <I>Expat</I> library; and so on.
+
+<P>
+However, developers writing simple clients may prefer to use the MTConnect&nbsp;
+SDK libraries described below to avoid dealing directly with HTTP and
+XML parsing.
+
+<P>
+<B>@</B>@@BUG Pointer to spec that details the RESTful URI encodings for the
+  three basic commands, and pointer to the XML Schema describing the
+  returned documents
+
+<P>
+
+<H2><A NAME="SECTION00042000000000000000">
+Microsoft .NET Framework</A>
+</H2>
+
+<P>
+The Microsoft CLR and the .NET Framework's Base Class Library allow
+programs written in a variety of languages (Visual Basic.NET, C#, J++,
+etc.) to all make use of a common set of class libraries.
+
+<P>
+The MTConnect&nbsp;SDK provides a class library for use with the .NET framework.
+The class signatures are shown in the Appendix.
+
+<P>
+The VB API is a set of wrappers around the RESTful API that makes event information directly available 
+
+<P>
+
+<H3><A NAME="SECTION00042100000000000000">
+Overview of VB API</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00042200000000000000">
+Probe</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00042300000000000000">
+Sample</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00042400000000000000">
+Current</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00042500000000000000">
+Parsing Returned Values</A>
+</H3>
+How to access the various fields and elements of returned values in VB
+
+<P>
+
+<H2><A NAME="SECTION00043000000000000000">
+(Optional) C#/Microsoft .NET CLR</A>
+</H2>
+
+<P>
+
+<H1><A NAME="SECTION00050000000000000000"></A>
+<A NAME="sec:examples"></A><BR>
+Example Scenarios
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00051000000000000000">
+One Machine</A>
+</H2>
+
+<P>
+The simplest MTConnect&nbsp;client might just be interested in collecting one
+measurement from one machine.  The program in this section does just
+that.  Relative to the hypothetical shop-floor of
+figure&nbsp;<A HREF="#fig:example_environment">1</A> and its representation as an MTConnect&nbsp;
+equipment hierarchy in figure&nbsp;<A HREF="#fig:equipment_hierarchy">2</A>, the
+following program collects only measurements of the X axis' current
+position by repeatedly calling <TT>Current</TT> with the path of the X
+axis as the path argument.  Recall that <TT>Current</TT> is just a
+special form of the <TT>Sample</TT> command that effectively says ``Send
+me whichever samples have arrived since the last time I checked.''
+There are two other points to note about this example:
+
+<P>
+
+<OL>
+<LI>This client never calls Probe, because the client is designed to
+  work with a specific machine. However, it might be prudent in practice
+  to call Probe with the expected path to the machine name (in this
+  case, /Equipment/CNCMill) to make sure the machine is actually present
+  and known to the Agent.  <B>@</B>@@BUG Show example code to do this  The
+  client   could also
+  search the XML document
+  to verify the presence of an element
+  matching the path /Equipment/CNCMill/Controller/Axes/XAxis.  (Or,
+  perhaps simpler, it can do a separate Probe using that path as the
+  argument, and verify that the result is nonempty.)
+</LI>
+<LI>Each time the client calls <TT>Sample</TT>, an <I>array</I> of
+  measurements is returned. Depending on whether any new measurements
+  were reported by the controller since the last call to <TT>Sample</TT>,
+  the length of this array might be zero, one, or an arbitrarily large
+  number.
+
+<P>
+</LI>
+</OL>
+
+<P>
+<PRE>
+// Simple client in C#
+
+using System;
+using MTConnect;
+namespace MySimpleClient {
+  class Program {
+    Event[] x_axis_measurements;
+    agent = new Client("http://mtcagent.mydomain.com",80);
+    while (1) {
+      x_axis_measurements = agent.Current("/CNCMill/Table1/Axes/XAxis");
+      foreach (Event meas in x_axis_measurements) {
+        Console.WriteLine("Value "+meas.ValueAsFloat().toString("G")+" at " +
+                          meas.timestamp.toString("HH:mm:ss.ffffff"));
+      }
+    }
+  }
+}
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00052000000000000000">
+Multiple Machines</A>
+</H2>
+
+<P>
+example: request measurements by component or by measurement type, for
+one or more pieces of equipt
+
+<P>
+
+<H2><A NAME="SECTION00053000000000000000">
+Advanced example: Synthesizing State</A>
+</H2>
+
+<P>
+Apps that need to synthesize a representation of ``machine state'' from
+looking at individual measurements
+
+<P>
+
+<H1><A NAME="SECTION00060000000000000000"></A>
+<A NAME="sec:controller"></A><BR>
+API's for Adapting Legacy Controllers to MTConnect
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00061000000000000000">
+Agent-to-Controller API: Writing a Machine Adapter</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00061100000000000000">
+SHDR Push</A>
+</H3>
+
+<P>
+SHDR push(timestamp, source_id, value) to socket
+
+<P>
+XML schema file includes ``source definition'' info that allows it to
+map source_id's delivered by adapter to MTConnect-level component names 
+units of values are defined in XML schema, so agent can do conversion
+among units 
+
+<P>
+ts ``|'' source_id ``|'' value ``
+<BR>n''
+
+<P>
+
+<H3><A NAME="SECTION00061200000000000000">
+SHDR Expecting</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00061300000000000000">
+SHDR library in Ruby</A>
+</H3>
+
+<P>
+
+<H2><A NAME="SECTION00062000000000000000">
+Developing an Equipment Schema</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00062100000000000000">
+By Hand-Coding XML</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00062200000000000000">
+Using the SchemaBuilder GUI</A>
+</H3>
+
+<P>
+
+<H1><A NAME="SECTION00070000000000000000"></A>
+<A NAME="sec:manifest"></A><BR>
+Manifest of SDK Code Library (What's In the Zip File)
+</H1>
+
+<P>
+<B>@</B>@@BUG Talk about SVN access to stable and tagged releases of the SDK
+
+<P>
+
+<H2><A NAME="SECTION00071000000000000000"></A>
+<A NAME="sec:dotnetlibrary"></A><BR>
+.Net Classes for MTConnect
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00071100000000000000">
+Client Libraries</A>
+</H3>
+
+<P>
+The file <TT>MTConnect.dll</TT> implements the MTConnect&nbsp;class namespace, as
+follows:
+
+<P>
+<BR>
+
+<BR>
+
+<P>
+
+<H2><A NAME="SECTION00072000000000000000"></A>
+<A NAME="sec:manifest-agent"></A><BR>
+MTConnect Agent (Ruby)
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00073000000000000000">
+Schema Builder (mds to xsd)</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00073100000000000000">
+SHDR-level Capture and Replay</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00073200000000000000">
+Agent</A>
+</H3>
+
+<P>
+
+<H3><A NAME="SECTION00073300000000000000">
+Adapter</A>
+</H3>
+
+<P>
+
+<H2><A NAME="SECTION00074000000000000000">
+lib/rest/</A>
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00075000000000000000">
+lib/vb/</A>
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00076000000000000000">
+apps/</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00076100000000000000">
+IPC/CAMX Line Monitor</A>
+</H3>
+
+<P>
+
+<H2><A NAME="SECTION00077000000000000000">
+adapters/</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00077100000000000000">
+IPC/CAMX Adapter</A>
+</H3>
+
+<P>
+
+<H1><A NAME="SECTION00080000000000000000">
+Appendix 2: Current Vendor Support for MTConnect</A>
+</H1>
+This section describes specific controller and other equipment for which MTConnect adapters have been created.
+
+<P>
+<B>@</B>@@BUG Include the schema for each controller
+
+<P>
+
+<H2><A NAME="SECTION00081000000000000000">
+LinuxCNC: Open Source Enhanced Machine Controller</A>
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00082000000000000000">
+Fanuc Connectivity</A>
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00083000000000000000"></A>
+<A NAME="sec:ipc_camx"></A><BR>
+IPC-CAMX Connectivity
+</H2>
+
+<P>
+
+<H2><A NAME="SECTION00084000000000000000">
+ArchRock Sensor Connectivity</A>
+</H2>
+
+<P>
+
+<H2>No References!</H2>
+
+<P>
+
+<H1><A NAME="SECTION000100000000000000000">
+About this document ...</A>
+</H1>
+ <STRONG>MTConnect Developer Documentation</STRONG><P>
+This document was generated using the
+<A HREF="http://www.latex2html.org/"><STRONG>LaTeX</STRONG>2<tt>HTML</tt></A> translator Version 2002-2-1 (1.71)
+<P>
+Copyright &#169; 1993, 1994, 1995, 1996,
+<A HREF="http://cbl.leeds.ac.uk/nikos/personal.html">Nikos Drakos</A>, 
+Computer Based Learning Unit, University of Leeds.
+<BR>Copyright &#169; 1997, 1998, 1999,
+<A HREF="http://www.maths.mq.edu.au/~ross/">Ross Moore</A>, 
+Mathematics Department, Macquarie University, Sydney.
+<P>
+The command line arguments were: <BR>
+ <STRONG>latex2html</STRONG> <TT>-split 0 manual.tex</TT>
+<P>
+The translation was initiated by William Sobel on 2007-12-11<BR><HR><H4>Footnotes</H4>
+<DL>
+<DT><A NAME="foot77">...MTConnect</A><A
+ HREF="manual.html#tex2html1"><SUP>1</SUP></A></DT>
+<DD>MTConnect is a registered trademark of the
+  Association for Manufacturing Technology.  While this document and the
+  software described in it are liberally licensed as described in
+  section&nbsp;<A HREF="#sec:license"><IMG  ALIGN="BOTTOM" BORDER="1" ALT="[*]"
+ SRC="file:/opt/local/share/lib/latex2html/icons/crossref.png"></A>, use of the MTConnect trademark carries
+  additional restrictions.  See <TT><A NAME="tex2html2"
+  HREF="http://www.mtconnect.org">http://www.mtconnect.org</A></TT>for  details.
+
+</DD>
+<DT><A NAME="foot214">...
+W3C</A><A
+ HREF="manual.html#tex2html7"><SUP>2</SUP></A></DT>
+<DD>World Wide Web Consortium, the technical body that ratifies
+  open standards for WWW technologies.  You can find a good XPath
+  tutorial introduction at&nbsp;[#!xpath_tutorial!#].
+
+</DD>
+</DL><HR>
+<!--Navigation Panel-->
+<IMG WIDTH="81" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next_inactive"
+ SRC="file:/opt/local/share/lib/latex2html/icons/nx_grp_g.png"> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up"
+ SRC="file:/opt/local/share/lib/latex2html/icons/up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous"
+ SRC="file:/opt/local/share/lib/latex2html/icons/prev_g.png">   
+<BR>
+<!--End of Navigation Panel-->
+<ADDRESS>
+William Sobel
+2007-12-11
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,84 @@
+\section{Technology Glossary}
+\label{sec:glossary}
+
+\mtc{} is built on the following completely open technologies.  While
+you do not need a detailed understanding of any of them in order to use
+\mtc{}, they are mentioned here for reference and presented in logical
+rather than alphabetical order.
+
+Throughout the article, references to standards or
+technologies described below appear \gloss{like this}.
+
+\begin{itemize}
+\item \textbf{HTTP} Hypertext Transfer Protocol, the protocol used to transfer 
+  data between Web servers and Web browsers.  This protocol, and most of
+  the other Web-related standards used 
+  by \mtc, are stewarded by the World Wide Web Consortium 
+  (W3C), \url{http://www.w3.org}.
+\item \textbf{LDAP} Lightweight Directory Access Protocol, the protocol used to
+  query a directory server (also known in the Windows world as Active Directory)
+\item \textbf{Open Source} Sometimes abbreviated FOSS (Free and Open Source
+  Software).  Any software that is available free of charge and
+  usually licensed under terms that require no royalty payment for its
+  use, redistribution or modification.  The GNU General Public License
+  (GPL) is one example of an open-source license, but in fact there are
+  many variants of open-source licensing; you can read about them at
+  \url{http://www.opensource.org}. 
+\item \textbf{Relational Database} Sometimes abbreviated RDBMS (Relational
+  DataBase Management System).  Software that stores a collection of
+  data as one or more tables among which
+  relationships can be specified.  Microsoft Access is an example of a
+  non-open-source RDBMS; MySQL is an example of an open-source RDBMS.
+\item \textbf{TCP/IP} Transmission Control Protocol/Internet Protocol.  A
+  foundational set of basic Internet communication protocols that has
+  dominated information technology for the last two decades.  ``Higher
+  level'' protocols such as HTTP are built on top of TCP/IP.  TCP/IP and
+  other protocols related to low-level Internet communication 
+  are stewarded by the
+  Internet Engineering Task Force (IETF), \url{http://www.ietf.org}.
+\item \textbf{Tree} A data structure in which each element can have
+  zero or more children, but each child has exactly one parent.  Trees
+  are commonly used to represent hierarchical data organization; for
+  example, many corporate organizational charts are trees, with the
+  president at the top, one or more vice-presidents under the president,
+  one or more department heads under each vice-president, etc.  XML is
+  particularly well suited to representing tree-structured data.
+\item \textbf{URI} Universal Resource Identifier, a specially-formatted string
+  that names a resource available on the World Wide Web.  One type of
+  URI is a Universal Resource Locator (URL) such as
+  \texttt{http://www.mtconnect.org}. 
+\item \textbf{Web browser} A program running on your PC that allows you to
+  contact a Web server via the Internet and view
+  the content provided by Web servers.  Microsoft Internet Explorer and
+  Firefox are examples of Web browsers.
+\item \textbf{Web server} A computer connected to the public Internet that runs
+  software that serves Web content such as pages, images, etc. to a Web
+  browser.  Apache and Microsoft Internet Information Server (IIS) are
+  examples of Web servers.
+\item \textbf{XML} eXtensible Markup Language, a human-readable, ASCII-based way
+  to represent hierarchically-structured data.  An XML~\emph{document}
+  is a self-contained, standalone ``blob'' of XML, such as the
+  description of the structure of a piece of equipment or a finite collection
+  of measurement samples.
+\item \textbf{XML element} A logical ``chunk'' of content within an XML
+  document. Elements can be \emph{nested}, that is, an element can
+  contain other elements.
+\item \textbf{XML tag} In an XML document, a string of text
+  surrounded by angle brackets ($<$, $>$) that indicates
+  structure (as opposed to content), typically the boundaries of an XML
+  element.  For example, the tag
+  \verb+<Devices>+ indicates the beginning of the Devices element in an
+  XML document, while \verb+</Devices>+ (note the forward slash)
+  indicates the end of the Devices
+  element; hence the former is usually called an \emph{begin tag} and the
+  latter an \emph{end tag} for Devices.  Everything between the begin
+  tag and end tag for an element is the content of that element, which
+  may in turn contain other elements set off by begin/end tags, and so on.
+\item \textbf{XPath} A standard that codifies the syntax for specifying how to
+  navigate and retrieve elements from an XML document.
+\item \textbf{XML Schema} A standard for describing the a family of XML
+  documents in terms of the  specific types of data
+  they can include, how those data are represented, and the hierarchical
+  structure of  the data.  The \mtc{} specification for data exchange is
+  codified as an XML~Schema document.
+\end{itemize}

@@ -1,0 +1,642 @@
+
+\section{Architectural Review of \mtc}
+\label{sec:arch}
+
+In this section we review the key architectural concepts of \mtc.  It's
+strongly suggested that you follow the examples by using a Web browser 
+to interact with the live
+Agent provided by the \mtc~Consortium for developer testing.  In the
+next section we will see how to interact with the agent from a Client
+program rather than ``manually'' via a Web browser.
+
+\subsection{\mtc~Environment}
+
+The \mtc specification requires that all \mtc communication take place
+over \gloss{HTTP}\footnote{When the name of a protocol or technology
+  appears in this typeface, it means you can look in the Glossary
+  (section~\ref{sec:glossary}) for a concise
+  description of it.}
+running over \gloss{TCP/IP}.  Therefore,
+Clients can be developed in any programming language that has
+support for networking, and you can even use a Web browser (which is
+basically a generic HTTP client) to interact in limited ways with \mtc{}
+devices. 
+
+An \mtc~Agent is a software entity that interprets \mtc{} commands and
+returns machine data on behalf of one or more machines that it
+``represents'' in the \mtc{} environment (hence
+the term Agent).  The Agent software may be part of the
+controller's software stack, or it may be a separate piece of software
+running on a computer that communicates with a controller via a
+proprietary interface.
+The \mtc~Consortium operates
+a publicly-accessible simulator of an \mtc-enabled vertical CNC
+mill\footnote{The simulator is based on the \gloss{open 
+  source} controller EMC2 (\url{http://www.linuxcnc.org}).}. 
+If you have access to a Web browser, it's strongly recommended you use
+it to contact the Test Agent and follow the examples in this guide.
+
+\boxednote{You mean Agents are publicly accessible?}{We've chosen to
+  make the Test Agent publicly accessible with no passwords, firewalls
+  or other security measures, for the convenience of
+  \mtc~developers. In a production scenario, the Agent would likely be
+  protected by one or more of these standard security measures.}
+
+\mtc{} data communicated from an Agent to a Client is represented using
+\gloss{XML}, the eXtensible Markup Language, which provides for a
+human-readable, ASCII-based representation of hierarchical data.  The
+specific XML constructs permitted in \mtc are codified using the
+\gloss{XML~Schema} standard, but you don't need to be familiar with
+XML~Schema to use \mtc.  Of course, data pulled from machines can be
+stored in a non-XML format as well---for example, it can be stored in a
+\gloss{relational database} or imported into an Excel spreadsheet.  But
+all data communicated between an \mtc{} device and its client
+applications must be represented in XML.
+
+Besides the Agent and the Client, there are two more basic concepts you
+must understand to get started with \mtc:
+
+\begin{enumerate}
+\item Device schema: how a device, such as a controller attached to a
+  machine tool with various axes and fixtures, describes what data are
+  available to collect.
+\item Data representation: the format in which  result data
+ is delivered to the requester.
+\end{enumerate}
+
+\mtc~1.0 defines one command, \icode{probe}, that allows a client to
+discover the device schema of the machine represented by a particular
+Agent; and two commands, \icode{sample} and \icode{curren}, to actually
+collect data.
+
+\subsection{The Probe Command and the Device Schema}
+
+The \mtc{} \icode{probe} command is used to interrogate what data an
+Agent is able to report on behalf of the machine(s) it represents.
+(The most common case
+is for an Agent to represent exactly one machine, but it is possible for
+a single Agent to represent multiple machines.)  
+
+Each machine represented by an Agent is called a \emph{device} in \mtc.
+Therefore, the response to a probe is a \gloss{tree} of components,
+whose ``root'' or 
+topmost node, Devices, has \emph{children} 
+(nodes directly connected to it and one level lower in the hierarchy)
+representing each  individual machine (Device).  
+In other words, you can think of the Devices
+node as a ``container'' that groups together a logical collection of
+devices---for example, a cell on a shop floor---whereas each Device node
+would represent a particular piece of hardware.  
+
+\subsubsection{Issuing the Probe Command}
+
+To issue any \mtc{} command to an Agent, you construct a \gloss{URL} by
+taking the base URL of the agent (in our example, the Test Agent is
+running at
+\icode{\agenturl} and appending a slash followed by the command name (in
+this case, \icode{probe}).  In later sections we'll see how to pass
+arguments to the command, but the \icode{probe} command takes no arguments.
+
+So, point your Web browser at \icode{\agenturl/probe} and you will see
+the device schema of a simulated vertical CNC mill, which is programmed
+to repeatedly cut a spiral pattern using the simple GCode program shown in
+listing~\ref{code:spiral}.  You should see something very similar to
+listing~\ref{fig:probe-output}; in the listing we have broken up the
+lines to improve readability, and we have numbered the lines for
+reference. 
+
+\subsubsection{What Can Be Reported?}
+\label{sec:interpreting-device-schema}
+
+What data can this test Agent report?
+The beginning of the Devices
+``container'' contents is indicated by the \gloss{XML tag}
+\verb+<Devices>+ (figure~\ref{fig:probe-output}, line 9) and the end of
+the container contents by \verb+</Devices>+ (line 85).  This particular
+Agent represents only a single Device (the simulated LinuxCNC vertical
+mill controller), so the Devices node encloses only a single Device
+node, which starts at line 10 and ends at line 84.
+
+The children of each
+Device (i.e., the entities contained ``within'' it) 
+are its subassemblies or components; the \mtc spec states that
+\emph{every} Device
+must have at least a Power component, which at a minimum reports whether
+the device is powered on or off.   You can see at lines 77--82 that
+there is indeed a Power component.
+
+You can also see that there are four axes that can deliver
+measurements.  One is a spindle (lines 23--32), and there are also
+linear X, Y and Z aces (lines 33--42, 43--52, 53--62 respectively).
+Notice that each Linear axis has a different name (``X'', ``Y'' and
+``Z'' respectively); this shows that a given component can have multiple
+subcomponents of the same type (Linear axis) as long as they all have
+different names.
+
+\subsubsection{DataItems: What Actual Data Will Be Delivered?}
+
+What specific data---in what units, etc.---will be reported for each
+component?  Take a look again
+at lines 33--41, which describe the Linear X axis measurements
+available.  Inside the Linear node, we find a list of DataItems.  Each
+item in this list corresponds to one type of measurement that is
+available for this component (the Linear X axis).
+
+Lines 35--37 and 37--39  show the two types of measurements that this
+axis can report.  Both measurements are of type POSITION (contrast with
+the Spindle type axis, whose measurement type is SPINDLE\_SPEED, as you
+can see in line 25).  One measurement corresponds to a COMMANDED
+position and the other to an ACTUAL position (the subType attribute of
+each DataItem).  Both measurements are delivered in units of MILLIMETER,
+and both are in the category SAMPLE.  The category tells you, in effect,
+what ``kind'' of data this is:  a numerical sample value, an event (such
+as an alarm or a power state such as ON vs. OFF), and so on.  For
+example, you can see that the Power subsystem (lines 77--82) can deliver
+a ``measurement'' whose type is POWER\_STATUS and whose category is
+EVENT (rather than SAMPLE).  The reason for this is that SAMPLEs are
+used to denote actual numerical data sample values, whereas EVENTs are
+used to denote properties that can only take on one of a fixed number of
+values, such as ON or OFF for the POWER\_STATUS.  
+
+\boxednote{What determines whether a component reports SAMPLES or
+  EVENTS?}{The complete \mtc{} specification spells out exactly what 
+  different categories, types, and subtypes are allowed to appear in the
+  response to a \icode{probe}.  The \mtc{} Specification document
+  describes these in plain English, but the authoritative (and most
+  precise) description is the XML~Schema file available from the \mtc{}
+  Web site, \website.}
+
+You've no doubt noticed that each component has other attributes we
+haven't mentioned---for example, fields such as \emph{id} or
+\emph{nativeUnits}.  You can read about all of these in detail in the
+\mtc{} specification; in general we'll introduce them only as needed to
+get you writing applications quickly.  However, it is worth noticing
+some attributes describing the Device represented by this agent (see
+line 10), because they tell you something about the machine:
+
+\begin{itemize}
+\item \verb+uuid+ is an identifier that uniquely identifies this
+  component.  A common method for generating these is to reverse the
+  Internet domain name of the organization (e.g. mfg.mycorp.com becomes
+  com.mycorp.mfg) and then adding the component's serial number or other
+  unique identifer (e.g. com.mycorp.mfg.2205178).
+\item \verb+name+ is a human-readable name describing the component,
+  LinuxCNC in our example.
+\item \verb+sampleRate+ is the maximum rate at which this device
+  samples, in samples per second.  We'll return to this when we use the
+  Sample command.
+\end{itemize}
+
+As you can see, \icode{probe} doesn't actually return data samples
+values; it only returns information describing the \emph{structure} of
+the device and component hierarchy.  Next we'll use this information to
+determine what data to request.
+
+\subsubsection{Paths and XPath}
+\label{sec:xpath}
+
+The hierarchical arrangement you saw in the output of \icode{probe}
+leads us to the very important concept of 
+the \emph{path} to a node in the hierarchy.  You can think of a path as
+a description of how to traverse the data, starting from the root node
+(the node labeled \emph{m:MTConnectDevices} in line 2 of
+figure~\ref{fig:probe-output}; don't worry too much about the name) and
+ending up at the node or nodes with the measurements you are actually
+interested in.
+
+For example, to ``navigate'' to the node describing the Z-axis Actual
+position in figure~\ref{fig:probe-output}, you might describe it like
+this:
+
+\begin{enumerate}
+\item Begin at the root node, \emph{m:MTConnectDevices} (line 2).
+\item From there, look for the Devices child (line 9).
+\item From there, look for the first Device child (line 10).
+\item From there, find the Components associated with the Device (line
+  15).
+\item From there, locate the Axes subcomponent (line 16).
+\item From there, find the Components list that makes up the Axes (line
+  22).
+\item Within that list, find the Linear component whose name is Z (line 53).
+\item Finally, inside that component, you can see what data items it
+  will return.
+\end{enumerate}
+
+Using the same ``directory'' notation you've seen for navigating file
+systems, we could write down the \emph{path} to the Z axis data as:
+
+\begin{quotation}
+\icode{/m:MTConnectDevices/Devices/Device/Components/$\neg$ \\
+  Axes/Linear[@name="Z"]/DataItem[@subType="ACTUAL"]}
+\end{quotation}
+
+(where we've used the symbol $\neg$ to indicate a line break that
+implies  no additional spaces, i.e. the above string should be all run
+together on one line).  In the above expression, the square brackets
+indicate additional \emph{restrictions} in following the path; for
+example, the excerpt \icode{Axes/Linear[@name="Z"]} can be read as
+``From the Axes component, find the child called Linear \emph{whose name
+  is `Z'}.''  In the case of Devices and Device, we didn't need these
+extra qualifiers, since there is only one Devices node and it has only
+one Device node as a child.
+
+The notation above is legal syntax for \gloss{XPath}, a standard for
+describing how to ``navigate'' an XML document (such as the Probe
+output) to find what you want.
+However, it's also somewhat cumbersome.  We can make it much more
+readable and compact by taking advantage of the fact that XPath doesn't
+require us to navigate ``step by step''.  In particular, above
+we used the notation \icode{A/B} to indicate ``from A, navigate to the child
+of A that is called B'', but XPath also lets us use the notation
+\icode{A//B} to indicate ``from A, navigate to the \emph{descendant} of
+A that is called B.''  As in real life, a descendant could be a child, a
+grandchild (child of a child), etc.  So it should be easy for you to
+convince yourself that the following XPath expression will also take us
+to the Z-axis Actual measurement:
+
+\begin{quotation}
+  \icode{//Devices//Device//Axes//Linear[@name="Z"]}
+\end{quotation}
+
+Not nearly as bad!  Notice that \icode{Devices//Device} is just as valid
+as \icode{Devices/Device}: since Device is a child of Devices, by
+definition it's also a descendant of Devices.  Note also that we can
+omit the root node:  since the path starts with \icode{//Devices}, it
+implicitly means ``start at the root of the tree, and locate the first
+descendant called Devices.''  In fact, for our simple CNC controller,
+even the following path would be valid:
+
+\begin{quotation}
+  \icode{//Linear[@name="Z"]} 
+\end{quotation}
+
+This says: ``From the root of the tree, find the first descendant that
+is a Linear node whose name is `Z'.''
+This works because we know that in our simple machine, 
+only one possible measurement can match that criterion.  On the other
+hand, if we just gave the path as \icode{//Linear}, it would match all
+three of the Linear axes (named ``X'', ``Y'' and ``Z'' respectively).
+
+Next we'll use this path notation to actually get data samples.
+
+\subsection{Sample and Current: Data Items and Events}
+\label{sec:measurements}
+
+An \emph{event} is the act of capturing a data item; in addition to the
+raw data value, the event includes metainformation such as the sequence
+number of the event (showing the order in which the measurements were
+taken or alarms noted) and the time at which the event occurred (when a
+measurement was taken or an alarm noted, to whatever time resolution is
+supported by the device).
+
+% Developers accustomed to the RPC-style (Remote Procedure Call)
+% programming pattern, in which each request made by a client has exactly
+% one corresponding response from the ``server'', may wonder why \mtc
+% bothers with the notion of an ``event'' rather than a simple
+% request/reply model.  Under the RPC pattern, the Client in essence says
+% ``Take a snapshot of your state, and report it to me.''  
+
+The reason for Events is that \mtc{} tries  to avoid assumptions
+about the relationship between the rate at which a particular controller
+produces  data and the rate at which
+a particular client application wants to consume it.  As a simple
+example, consider spindle load.  A particular Agent (embedded in a
+controller, say) may be able to produce samples of this value every
+10 milliseconds, and indeed a sophisticated monitoring client
+might want to collect such fine-grained samples.  But what about a
+coarser-grained monitoring client that only collects a couple of
+``snapshots'' per second of this data?  How would the Agent
+``know'' at what granularity it should be capturing samples?
+
+Using Events eliminates this apparent problem.  You can
+think of the Agent as ``filling a bucket'' with data samples (events)
+on its own, and different applications then ``draw samples'' from the
+bucket at different frequencies as needed.  Periodically, as the bucket
+gets full, the Agent discards the oldest samples---whether
+anyone has seen them or not.
+
+\subsubsection{The Current Command: Show Me a Snapshot}
+\label{sec:cmd:current}
+
+
+
+The command \icode{current} returns the \emph{most recent} set of measurement
+samples from all reporting components.  It takes an optional argument,
+but we will first explain its behavior when this optional argument is
+omitted. 
+
+You already saw that a command is transmitted to an Agent by
+constructing an HTTP URL consisting of the Agent's base address and the
+name of the command.  So, point your Web browser at
+\texttt{\agenturl/current}, and you should see output similar to that
+shown in figure~\ref{fig:current-output} (the timestamps and some of the
+values may be different, and we made the formatting easier to read in
+the printed listing, but the structure should be the same).
+
+Let's see how the output of \icode{current} in
+figure~\ref{fig:current-output} corresponds to that of \icode{probe}.
+Recall that when we looked at the output of the \icode{probe} command
+(figure~\ref{fig:probe-output}), we looked at the Axes entity (line 16)
+which has a child Spindle (line 23) whose name is ``S'', and that
+Spindle is capable of reporting its \x{ACTUAL} \x{SPINDLE\_SPEED} (line
+25) in units of \x{REVOLUTION/MINUTE} (line 28). While you're there,
+notice the \emph{id} of this DataItem is 10 (line 27).
+
+Now look at line 36 of the output from the \icode{current} command
+(listing~\ref{fig:current-output}), 
+which begins a \x{ComponentStream} for the device identified by the
+path \x{/Device[@name="LinuxCNC"]//Axes[@name="Axes"]} and the specific
+component \x{S} within that path.  The correspondence makes it clear
+that the measurements contained in this \x{ComponentStream} element
+correspond to that same spindle.
+
+What are the values of those measurements?  You can see a \x{Samples}
+element (line 39) 
+containing a single sample (line 40),  a \x{SpindleSpeed}
+measurement whose value is 3400.0.   The measurement was taken at
+11:18 and 16.372 seconds on May 23, 2008 (the \x{timestamp} attribute of
+the \x{SpindleSpeed} sample).  
+
+
+What are the units of the measurement?  The fact that the SpindleSpeed 
+measurement also has an \emph{itemId} of 10, which corresponds to the
+\emph{id} of 10 in line 27 of the \icode{probe} output, is a further way
+of telling you that this SpindleSpeed sample is a measurement of the
+type described by the DataItem structure in that \icode{probe}.  That
+DataItem tells us that
+the units 
+are revolutions per minute (figure~\ref{fig:probe-output}, line 28).
+In other words, we looked at the \emph{itemId} of the measurement value
+from \icode{current}, and matched it up with the \emph{id} of the
+DataItem from  \icode{probe} to determine, in effect, how to interpret
+the value.
+
+There's another way (besides matching up the \emph{itemId} and \emph{id}
+fields) to do match these up as well.  Notice the \x{path} attribute of
+the \x{Samples} element (figure~\ref{fig:current-output}, line 37).  You
+can easily verify that the path given there, namely 
+\texttt{/Device[@name='LinuxCNC']//Axes[@name='Axes']}, is an XPath
+expression.  If we apply this path to the Probe output
+(figure~\ref{fig:probe-output}), 
+just as we did in section~\ref{sec:xpath},
+it would return the entire \x{Axes}
+node, which spans lines 11--42 in figure~\ref{fig:probe-output}.  
+
+And as we'll see, the Client Libraries for \mtc{} automate much of this
+matching-up and document-traversal for you.
+
+\subsubsection{Test Your Understanding\ldots}
+
+In a similar way, you should be able to look at
+figures~\ref{fig:probe-output} and~\ref{fig:current-output} and convince
+yourself of the following:
+
+\begin{enumerate}
+\item The Z-axis is a Linear axis that supplies Position measurements in
+  units of millimeters; it is capable of providing both a commanded and
+  actual position measurement.  (Probe, lines 53--62)
+\item The most recent actual value of the Z-axis is $-0.1000000015$mm,
+  although the commanded value was $-0.1$mm.  (Current, lines 28--33)
+\item The Power subsystem (Probe lines 77--82) is only able to report
+  Power status.  Power status is an Event, rather than a Sample, because
+  it is not a measured value but one of a finite number of possible
+  states.  
+\item At the time this sample was taken, the current Power
+  ``measurement'' shows that the power state is ON (Current lines
+  48--52).
+\item The Controller subsystem (Probe lines 65--76) is able to report
+  various items including Line, Controller Mode, Program and Execution.
+  However, the current sample (Current lines 54--68) only reports values
+  for Controller Mode (Automatic), Execution (Executing), and Program (a
+  GCode file called \texttt{spiral.ngc}; it doesn't report a value for
+  Line.  This could be because this particular controller doesn't report
+  that value.  It illustrates the important concept that while an entity
+  (e.g. Controller) may be \emph{logically capable} of reporting on a
+  particular type of measurement, that doesn't necessarily guarantee
+  that the measurement \emph{will always} be reported given some
+  specific machine. 
+\end{enumerate}
+
+As you can see from the above discussion, the \icode{current} command
+gives you  the \emph{data}
+associated with one or more measurements, and each data item can be one
+of a number of different types of data---a Sample (which itself can be a
+Position or a SpindleSpeed in this example) or an Event (such as the
+Execution, Controller Mode and Program ``measurements'' associated with
+the Controller in our example).  The complete specification of 
+different types of events and samples is codified in the \mtc{} XML
+Schema.
+
+You also saw that the \icode{probe} command gives important
+\gloss{metadata} (``data about the data'') associated with
+measurements.  For example, it is the output of the Probe command that
+tells us that  \x{SpindleSpeed} is reported in RPM whereas the \x{Z}
+axis position is reported in millimeters.
+
+\subsubsection{The Current Command with a Path Argument}
+\label{sec:cmd:current-with-path}
+
+In the previous example, we didn't pass any arguments to the
+\icode{current} command, so by default it reported current values for
+all measurements reportable by this Agent.  However, you can also call
+\icode{current} with an argument that restricts its attention only to
+certain measurements.  To do this, we simply construct an XPath
+expression (similar to what we saw in section~\ref{sec:xpath}) that
+matches only the parts of the ``tree'' we care about.
+
+For example, suppose we care only about the feedrates of the various
+axes, and not the controller program state.  If you pass an argument
+called \emph{path} to the \icode{current} command, the samples returned
+will be restricted only to those matching the given path.  Referring
+again to the output of Probe (figure~\ref{fig:probe-output}), recall
+that the path \texttt{//Axes} will match only the Axes element of the
+schema.  
+
+To issue a command with arguments to an Agent, we build up the command
+URL as usual, and then
+append a question mark after the command name, followed by the
+argument name and value:
+
+\begin{quotation}
+\texttt{\agenturl/current?path=//Axes}
+\end{quotation}
+
+Type this into a Web browser and you'll see that the result you get is
+much more concise than what you got when \icode{current} was issued with
+no arguments.  Indeed, what you get is that subset of the full snapshot
+that matches the path \icode{//Axes}.
+
+Similarly, the path \texttt{//Axes//Spindle} will match only the Spindle
+axis and not the other (linear) axes; you can read this path as: ``Find
+all the Axes components, wherever they occur; then, find any Spindle
+components that are descendants of those Axes components.''
+
+What if we wanted only the linear Z axis?  You might think to try
+\texttt{//Axes//Linear}, but all three (X, Y, Z) axes  match that path.
+In this case, we  can
+constrain the match using the \emph{attributes} of an element, as we
+showed in the first example in section~\ref{sec:xpath} 
+and write the path expression \texttt{//Axes//Linear[@name="Z"]} to get
+what we want.  You can read this as:  ``Find
+all the Axes components, wherever they occur; then, inside each one of
+them, find any Linear components \emph{whose \emph{name} attribute has
+  the value `Z'}.''  Recall that we don't need to use this trick to select the
+Spindle, because there is only one Spindle; but it would be
+perfectly fine to use the path \texttt{//Axes//Spindle[@name="S"]} in
+that query, leading to the URL
+
+\begin{quotation}
+  \icode{\agenturl/$\neg$ \\
+    current?path=//Axes//Spindle[@name="S"]}
+\end{quotation}
+
+What if the path we give doesn't match anything?  For example, what if
+we said
+
+\begin{quotation}
+  \icode{//Axes//Spindle[@name="NoSuchSpindle"]} or \\
+  \icode{//Axes//NeitherLinearNorSpindle}  
+\end{quotation}
+
+If you try it, you'll see
+that you still get back a well-formed XML response document---but it
+will contain no measurements or data samples.  In particular, the
+document will still have a Streams element that contains a DeviceStreams
+list, but that list will be empty.  This illustrates that it's not an
+error for an XPath not to match anything.
+
+\boxednote{Try It}{You're strongly encouraged to try these behaviors
+  yourself by typing these URL's right into your browser.  There's no
+  better way to get familiar with the XPath syntax than doing it
+  yourself.}
+
+XPath syntax is extremely rich, and if you know how to use it, you can
+construct quite sophisticated queries.  We will stick to 
+simple examples, but one interesting syntax construct is the use of
+the vertical bar or ``pipe symbol'',  \verb+|+, to mean ``one or the
+other.''  You construct each path expression completely separately, then
+join them with \verb+|+.  Thus in the above example, if we wanted the
+values of the X and Y axes only, we could use:
+
+\begin{quotation}
+  \icode{\agenturl/$\neg$ \\
+    current?path=//Axes//Linear[@name="X"]|//Axes//Linear[@name="Y"]}
+\end{quotation}
+
+
+\subsubsection{The Sample Command}
+\label{sec:cmd:sample}
+
+The command \icode{sample} is a generalization of \icode{current}.
+Rather than returning only the most recent measurement sample from one
+or more components, it returns a set of samples.
+
+It takes up to four arguments. 
+The \icode{start} argument tells the Agent what the first (earliest)
+measurement to be returned should be.  Notice in the example output from
+the Current command (figure~\ref{fig:current-output}) that each sample
+item has a sequence number associated with it (look for the
+\emph{sequence} attribute associated with each \emph{m:Position}
+measurement, for example at lines 15, 19, 29, etc.)  
+Every time an Agent records a new event from a controller, it
+increments the sequence number associated with that controller, so that
+every single measurement taken gets its own sequence number.  The
+sequence numbers are a simple way to number the events so you can tell
+which ones you've seen before.  
+
+Thus, the \icode{start} argument to the \icode{sample} command is the
+desired starting sequence number of data items.  The Client must supply
+this since there may be multiple Clients communicating with a single
+Agent, and the Agent doesn't necessarily keep track of which sequence
+numbers have been seen by which clients.  However, looking again at the
+output of the Current command, you'll see that the Header element has
+the attribute \texttt{nextSequence="52056912"} (line 8).  This is the
+Agent's way of telling the client what sequence number that client
+should request next, i.e. it's the lowest sequence number that client
+hasn't seen yet.  As you'll see in the next chapter, the Client Utility
+Library keeps track of this for you automatically.
+
+\boxednote{Why don't I have to keep track of the sequence number for the
+  Current command?}{By definition, the Current command returns the
+  ``most recent'' sample value for one or more measurements---so you
+  don't need to supply a sequence number.}
+
+The optional \icode{count} argument specifies a maximum number of samples to
+return, and defaults to 100 if no value is given.  Fewer samples may be
+returned if not enough are available (for example, 
+if \icode{count} is 100, but fewer than 100 samples have been
+reported since the desired starting sequence number).  In fact, if there
+are \emph{zero} samples available matching the given path and
+starting sequence number (perhaps the machine is offline or idle), zero
+events may be returned.
+
+The last argument, \icode{freq}, is for
+scenarios in which a Client wishes to continuously receive a streaming
+data feed of specific data items.  Use of this argument is optional
+and we won't cover it further in this
+overview, since it requires some programming techniques not covered in
+this tutorial.
+
+As before, we encode these arguments into the URL by appending a
+question mark, and we separate multiple arguments with ampersands (\&).
+For example, to issue the Sample command with arguments
+\emph{count$=100$}, \emph{sequence$=23456$} and
+\emph{path}=``//Axes//Linear'', we would construct  the URL
+
+\begin{quotation}
+  \icode{\agenturl/sample?count=$\neg$ \\
+    100\&sequence=23456\&path="//Axes//Linear"}
+\end{quotation}
+
+In the unlikely event you need to embed an ampersand in the URL as
+part of an argument value, you can
+use the escape sequence \verb+&amp;+ (you need both the \& and the
+trailing semicolon) to do so.)
+
+\subsubsection{Recap: Things to Remember}
+
+\textbf{``Error'' responses are rare:}
+Keep in mind that as long as a command to the Agent is
+well-formed---i.e., the Agent URL is correct, values have been supplied
+for required arguments, and any values for optional arguments are
+legal---then the response will \emph{always} be a valid XML document
+conforming to the \mtc{} XML Schema.  Of course, in some cases, the
+document may not have any ``interesting'' content: as we saw above, if
+you specify an XPath that doesn't correspond to any component that can
+deliver measurements, or if you request samples but there are no new
+samples to report, you may get back a document with zero samples.  But
+it is still a legal response and must still conform to the \mtc{} XML
+Schema.  Of course, if the URL encoding the command to the Agent is
+ill-formed, you  may get an HTTP error.
+
+\textbf{Is Probe always necessary?}
+A Client can certainly issue \icode{sample} or \icode{current} commands
+without ever having issued a \icode{probe} first.  For example, a
+particular Client may be designed to work only with a specific 
+device, and the device's schema may be ``hardwired'' into the
+Client code.  For example, we used knowledge from the
+Probe command above to determine in what units a particular measurement
+was reported.  But if the engineer writing the application ``knows''
+what units and measurements are reported by the machine, and he's
+writing an application that will only gather data from that specific
+machine, he may choose to ``hardcode'' this knowledge into the
+application itself rather than going through the extra step of doing a
+Probe.  Of course, if the controller behavior changes for some reason,
+this would be reflected in the output of the Probe command; so it's more
+portable and somewhat safer to use Probe rather than hardwiring this
+knowledge into the application.
+
+In contrast, a more generic Client, such as a
+monitoring/analysis tool that can be used with a variety of devices,
+might first do a \icode{probe} to find out what devices are available
+to be monitored, possibly presenting the human operator with a menu or
+selection list to narrow down what she wishes to see, and would also use
+the Probe output to get information about the units in which each
+measurement is reported, in order to perform unit conversions.
+
+As we'll see, the Client Libraries described in the next section
+\emph{do} expect you to do a Probe first, because they will then
+remember for you such information as measurement units and information
+about the machine itself.
+
+

@@ -1,0 +1,85 @@
+\documentclass[times,11pt]{article}
+%\documentclass[crown,titlepage]{octavo}
+%\documentclass{article}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{alltt}
+\usepackage{moreverb}
+\usepackage{float}
+
+\title{Getting Started With MTConnect Clients: A Tutorial}
+\author{Armando Fox et al. \\ MTConnect Consortium \\ sdk@mtconnect.org}
+\date{DRAFT (\input{revdate.tex}) Version 1.0}
+
+\newcommand{\boxednote}[2]{
+  \vspace{\baselineskip}
+  \fbox{\parbox{0.75\textwidth}{\textbf{#1}#2}}
+  \vspace{\baselineskip}
+}
+
+\newcommand{\icode}[1]{\texttt{#1}}
+\newcommand{\plaintextfile}[1]{
+ \begin{alltt}
+   \input{#1}
+ \end{alltt}
+}
+% \newcommand{\bug}[1]{\textbf @@@BUG #1}
+\newcommand{\bug}[1]{}
+\newcommand{\website}{\url{http://www.mtconnect.org}}
+\newcommand{\mtc}{MTConnect}
+\newcommand{\agenturl}{http://agent.mtconnect.org/LinuxCNC}
+\newcommand{\gloss}[1]{\textsf{#1}}
+\newcommand{\x}[1]{\texttt{#1}}
+%\newcommand{\comment}[1]{}
+% for source code listings
+\floatstyle{boxed}
+\newfloat{program}{tbp}{lof}
+\floatname{program}{Listing}
+
+\newenvironment{sourcecode}[3]{
+  \begin{program}
+    \label{#2}
+    \tiny
+    \verbatimtabinput[2]{#1}
+    \caption{#3}
+  \end{program}
+}
+
+% \newenvironment{sourcecode}[3]{
+%  \verbatimtabinput[2]{#1}
+% }
+
+
+\input{draft}   % PS commands for showing "DRAFT" on page
+\Draft{Draft}
+
+% by default, LaTeX sets the top-left corner of the text at +1 inch from 
+% the top of the page and +1 inch from the left of the page. These four 
+% parameters adjust for margins of .75" all around.
+\setlength{\oddsidemargin}{-0.25in}
+\setlength{\textwidth}{7.0in}
+% \setlength{\topmargin}{-0.25in}
+% \setlength{\textheight}{9.5in}
+
+% \makeindex
+
+\begin{document}
+\copyright{2007--2008 AMT---The Association For Manufacturing Technology} 
+
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\include{intro}
+\include{arch}
+\include{client_libraries}
+% \include{discovery}
+\include{listings}
+
+% \bibliographystyle{plain}
+% \bibliography{manual}
+
+\end{document}
+

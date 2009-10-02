@@ -1,0 +1,177 @@
+{\rtf1\ansi\deff16\deflang1024
+{\fonttbl{\f3\fnil\fcharset0 Zapf Chancery;}
+{\f4\fnil\fcharset204 Zapf Chancery;}
+{\f5\fnil\fcharset204 Times;}
+{\f6\fnil\fcharset204 Helvetica;}
+{\f7\fnil\fcharset204 Helvetica;}
+{\f8\fnil\fcharset204 Courier;}
+{\f9\fnil\fcharset2 Symbol;}
+{\f10\fnil\fcharset0 MT Extra;}
+{\f11\fnil\fcharset238 Zapf Chancery;}
+{\f12\fnil\fcharset238 Times;}
+{\f13\fnil\fcharset238 Helvetica;}
+{\f14\fnil\fcharset238 Helvetica;}
+{\f15\fnil\fcharset238 Courier;}
+{\f16\fnil\fcharset0 Times;}
+{\f17\fnil\fcharset0 Book Antiqua;}
+{\f18\fnil\fcharset0 Bookman Old Style;}
+{\f19\fnil\fcharset0 Century Gothic;}
+{\f20\fnil\fcharset0 New Century Schoolbook;}
+{\f21\fnil\fcharset0 Helvetica;}
+{\f22\fnil\fcharset0 Helvetica;}
+{\f23\fnil\fcharset0 Courier;}
+}
+{\colortbl;
+\red0\green0\blue0;
+\red0\green0\blue255;
+\red0\green255\blue255;
+\red0\green255\blue0;
+\red255\green0\blue255;
+\red255\green0\blue0;
+\red255\green255\blue0;
+\red255\green255\blue255;
+\red0\green0\blue128;
+\red0\green128\blue128;
+\red0\green128\blue0;
+\red128\green0\blue128;
+\red128\green0\blue0;
+\red128\green128\blue0;
+\red128\green128\blue128;
+\red192\green192\blue192;
+}
+{\stylesheet
+{\s0\fs22\snext0 Normal;}
+{\s2\ql\sb240\sa60\keepn\f16\b\fs40 \sbasedon0\snext0 heading 1;}
+{\s2\ql\sb240\sa60\keepn\f16\b\fs40\li0 \sbasedon0\snext0 heading 1;}
+{\s6\ql\sb240\sa60\keepn\f16\b\fs24\li2048 \sbasedon0\snext0 heading 5;}
+{\s3\ql\sb240\sa60\keepn\f16\b\fs32\li512 \sbasedon0\snext0 heading 2;}
+{\s7\ql\sb240\sa60\keepn\f16\b\fs24\li2560 \sbasedon0\snext0 heading 6;}
+{\s4\ql\sb240\sa60\keepn\f16\b\fs32\li1024 \sbasedon0\snext0 heading 3;}
+{\s5\ql\sb240\sa60\keepn\f16\b\fs24\li1536 \sbasedon0\snext0 heading 4;}
+{\s6\ql\sb240\sa60\keepn\f16\b\fs24 \sbasedon0\snext0 heading 5;}
+{\s1\qc\sb240\sa60\keepn\f16\b\fs40 \sbasedon0\snext0 part;}
+{\s3\ql\sb240\sa60\keepn\f16\b\fs32 \sbasedon0\snext0 heading 2;}
+{\s7\ql\sb240\sa60\keepn\f16\b\fs24 \sbasedon0\snext0 heading 6;}
+{\s4\ql\sb240\sa60\keepn\f16\b\fs32 \sbasedon0\snext0 heading 3;}
+{\s5\ql\sb240\sa60\keepn\f16\b\fs24 \sbasedon0\snext0 heading 4;}
+}
+\paperw12280\paperh15900\margl2680\margr2700\margt2540\margb1760\pgnstart0\widowctrl\qj\ftnbj\aftnnar
+{{\f9\'d3}\qj\fi340 {2007 Association for Manufacturing Technology} \par
+
+\par\pard\qc {\fs33 \qc\fi340 MTConnect Developer Documentation}
+\par\qc {\fs26 Armando Fox et al. \par
+\qc\fi0 MTConnect Consortium \par
+\qc\fi0 fox@mtconnect.org}
+\par\qc {\fs26 December 12, 2007}\par
+\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 0.1  Introduction\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.1.1  What Is MTConnect? \par
+}\qj\sb60 \fi0 MTConnect{\up17\chftn}
+{\*\footnote \pard\plain\s246\f16\fs22 {\up17\chftn}MTConnect is a registered trademark of the Association for Manufacturing Technology. While this document and the software described in it are liberally licensed as described in section\~{\field{\*\fldinst{\lang1024 REF BMsec_license \\* MERGEFORMAT }}{\fldrslt{?}}}, use of the MTConnect trademark carries additional restrictions. See {\b0\i0\scaps0\f23 http://www.mtconnect.org}for details.}
+  is a standard that codifies a simple {\i data format}, {\i command set} and {\i document-oriented protocol} for the exchange of manufacturing data. White papers and overview documents describing MTConnect conceptually can be found at {\b0\i0\scaps0\f23 http://www.mtconnect.org}.\par
+\qj\fi340 The other standards on top of which MTConnect is built are all open standards in that they are unencumbered from an intellectual property standpoint: specifications for those standards can be freely downloaded by anyone, and no royalties are levied against implementors of the standards. The same is true of the MTConnect specification itself. For licensing and legal details, see {\b0\i0\scaps0\f23 http://www.mtconnect.org}.\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.1.2  How to Use This Document\par
+}\qj\sb60 \fi0 This document is intended for engineers wishing to use MTConnect in their production or prototyping environments. It explains how to write applications and design controllers compatible with MTConnect generally. It also describes how to make use of the reference software provided in the MTConnect\~SDK (Software Developers\rquote  Kit) specifically; this software includes bindings (\ldblquote glue\rdblquote ) to allow the use of MTConnect from a variety of environments and languages, example applications, and MTConnect \ldblquote adapters\rdblquote  for equipment provided by several vendors.\par
+\qj\fi340 An outline of the contents of this document follows:\par
+{\qj\sb50 \li600\fi-300 1.\tab Section\~{\field{\*\fldinst{\lang1024 REF BMsec_arch \\* MERGEFORMAT }}{\fldrslt{?}}} describes the architectural concepts and components behind MTConnect and should be read by everyone who wants to use it in any way. \par
+\qj\sb50 \li600\fi-300 2.\tab Section\~{\field{\*\fldinst{\lang1024 REF BMsec_app \\* MERGEFORMAT }}{\fldrslt{?}}} describes the application programming interfaces (API\rquote s) available to developers who wish to write applications that collect and analyze data from MTConnect-compliant equipment, or {\i MTConnect client applications}. \par
+\qj\sb50 \li600\fi-300 3.\tab Section\~{\field{\*\fldinst{\lang1024 REF BMsec_examples \\* MERGEFORMAT }}{\fldrslt{?}}} contains documentation and examples for various types of client applications, including Web-based clients, Microsoft Visual Basic and VB.Net clients, and clients written in C/C++/C#. \par
+\qj\sb50 \li600\fi-300 4.\tab Section\~{\field{\*\fldinst{\lang1024 REF BMsec_controller \\* MERGEFORMAT }}{\fldrslt{?}}} is intended for developers who have an existing piece of legacy equipment (e.g., a controller or machine-tool simulator) and wish to enable it to participate in an MTConnect environment. \par
+\qj\sb50 \li600\fi-300 5.\tab Section\~{\field{\*\fldinst{\lang1024 REF BMsec_manifest \\* MERGEFORMAT }}{\fldrslt{?}}} describes in detail the software contents of the SDK and how they can be used. \par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.1.3  This Is Not A Spec\par
+}\qj\sb60 \fi0 The definitive MTConnect specification\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.1.4  License, Copyright and Trademark Information\par
+}\qj\sb60 \fi0 Talk about license, probably some version of BSD license or Creative Commons license\par
+\qj\fi340 Visual Basic, VB.NET, C#, Excel, Windows, and Internet Explorer are trademarks of Microsoft Corporation.\par
+\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 0.2  Architectural Overview of MTConnect\~\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.2.1  A Note on MTConnect\~\rquote s \ldblquote Native\rdblquote  Environment\par
+}\qj\sb60 \fi0 Although MTConnect\~is designed to be {\i transport-agnostic}\emdash that is, its design permits it to use any communication protocol that supports a document-exchange abstraction\emdash its \ldblquote native\rdblquote  protocol is HTTP (the Hypertext Transport Protocol), the same protocol used for communication among entities in the World Wide Web (WWW). HTTP, in turn, is most frequently layered on top of TCP/IP, the reliable-communication networking protocol suite that has dominated information technology for the last two decades. Therefore, throughout this document, we will assume unless otherwise noted that all MTConnect\~ communication is taking place using HTTP over TCP/IP. MTConnect\~is specifically designed to integrate with legacy equipment that does {\i not} support those protocols; we also describe how this is done.\par
+\qj\fi340 MTConnect\~data, as we shall see, is represented using a markup language based on XML, the eXtensible Markup Language. XML allows a portable, human-readable, ASCII-based representation of typed hierarchical data. Software that wishes to work with manufacturing data in a non-XML format\emdash for example, a relational database such as MySQL, or a spreadsheet such as Excel\emdash must therefore convert data between its \ldblquote native\rdblquote  representation and XML. The MTConnect\~SDK provides extensive support and libraries to make this very easy.\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.2.2  Architectural Concepts\par
+}{\qj\sb50 \li600\fi-300 \bullet\tab Agent: what it means for an entity to participate in an MTConnect\~ environment. \par
+\qj\sb50 \li600\fi-300 \bullet\tab Equipment schema: how a piece of equipment, such as a controller attached to a machine tool with various axes and fixtures, is represented in MTConnect\~. \par
+\qj\sb50 \li600\fi-300 \bullet\tab Command set: what kinds of requests an MTConnect\~client application can make in an MTConnect\~environment. \par
+\qj\sb50 \li600\fi-300 \bullet\tab Data representation: How the data (e.g. feed) produced by an MTConnect\~-compliant machine tool is represented and manipulated, and how it can be made available to other applications (e.g. Excel). \par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 An MTConnect\~Environment Consists of Agents\par
+}{\*\bkmkstart BMsec_agent}{\*\bkmkend BMsec_agent}\qj\sb60 \fi0 TBD: architecture diagram goes here\par
+\qj\fi340 An MTConnect\~environment is characterized by the presence of one or more MTConnect\~Agents. An Agent is a software entity that understands MTConnect\~commands and can exchange data using MTConnect\~\rquote s data representation, typically using HTTP over TCP/IP. We can distinguish various kinds of Agents:\par
+{\qj\sb50 \li600\fi-300 \bullet\tab Machine A is an automatic saw equipped with an MTConnect\~-compliant controller. The controller has an Ethernet port and a TCP/IP communications stack, and runs embedded software that can directly receive MTConnect\~commands via HTTP over TCP/IP and exchange MTConnect\~XML-encoded data over TCP/IP.\par
+\qj\sb50 \li600\fi-300 \bullet\tab Machine B is a \ldblquote legacy\rdblquote  CNC vertical mill whose controller allows limited data access via an RS-232 serial port, but does not support Ethernet or TCP/IP and provides no way to run embedded MTConnect\~Agent software. Machine B\rquote s serial port is connected to a PC running an {\i MTConnect\~Adapter}, which translates commands and data between B\rquote s proprietary formats and the MTConnect\~equivalents and arranges communication to and from B via the serial port. The combination of B and B\rquote s connector form an Agent.\par
+\qj\sb50 \li600\fi-300 \bullet\tab Machine C is a tool presetter. TBD example of a bidirectional agent.\par
+\qj\sb50 \li600\fi-300 \bullet\tab Machine D is a PC running monitoring and analysis software. This software\rquote s job is to collect and integrate data from machines A, B and C, analyze the data, and create reports or raise alarms if necessary. The client applications that analyze the data use an MTConnect\~Agent running on D itself to mediate communication with the rest of the MTConnect\~environment.\par
+}\qj\sb100 \fi340 The general rule is: MTConnect\~Agents talk to each other; MTConnect\~client applications request data via Agents; machines unequipped to run an Agent natively can have their communication mediated by an MTConnect\~Adapter. You can read more about Adapters and their use in section\~{\field{\*\fldinst{\lang1024 REF BMsec_controller \\* MERGEFORMAT }}{\fldrslt{?}}}.\par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Equipment Schema\par
+}\qj\sb60 \fi0 A machine is represented as a hierarchical collection of components. Each component can either be a {\i base} component, like an axis, or a {\i compound} component, which is just made up of other components.\par
+\qj\fi340 A central concept in MTConnect\~is the {\i path} to a component. In the example figure below, we can represent the path to the X-axis component as CNCMill:Axes:XAxis. This representation is important because, as we\rquote ll see, in many cases MTConnect allows the use of a subtree (or component prefix) to name a whole group of components. For example, the path CNCMill:Axes implicitly includes all of the components CNCMill:Axes:XAxis, CNCMill:Axes:YAxis, CNCMill:Axes:ZAxis, and CNCMill:Axes:Spindle. The path CNCMill includes all of the above and in addition the separate \ldblquote components\rdblquote  CNCMill:Temperature and CNCMill:OnTime. \par
+{\qj\sb240 \fi340 \par
+\qc\fi0 {Figure {\*\bkmkstart BMfig_equipment_hierarchy}0.1{\*\bkmkend BMfig_equipment_hierarchy}:  An example MTConnect component hierarchy for a simple 3-axis CNC mill}\par
+}\qj\sb240 \fi340 In any given MTConnect\~environment, there is always a \ldblquote root\rdblquote  component called Equipment, of which all other components are children. In the diagram above, the shop floor has two machines, a CNC mill and a tool presetter, so they are the two children of the Equipment component.\par
+\qj\fi340 Each component, in addition to having children, also has several other properties or {\i attributes}. The MTConnect\~Specification contains a complete list, but the most important ones for our purposes are:\par
+{\qj\sb50 \li600\fi-300 \bullet\tab {\b0\i0\scaps0\f23 uuid}, an identifier that uniquely identifies this component in the universe; for example, it could consist of a manufacturer\rquote s serial number plus a manufacturer part number for the component assembly. \par
+\qj\sb50 \li600\fi-300 \bullet\tab {\b0\i0\scaps0\f23 name}, a human-readable name describing the component; for example, ZAxis in the diagram above. \par
+\qj\sb50 \li600\fi-300 \bullet\tab {\b0\i0\scaps0\f23 Components}, the children of this component. In the above diagram, XAxis, YAxis, ZAxis and Spindle are children of Axes. \par
+\qj\sb50 \li600\fi-300 \bullet\tab {\b0\i0\scaps0\f23 Measurements}, the set of measurements this component can provide, for components that directly correspond to something physical; for example, the Axes component does not itself provide any measurements, but each of its children does. \par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Data Representation\par
+}\qj\sb60 \fi0 MTConnect\~data is represented as {\i events}. An event \par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Equipment Schema\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 XPath Representation of Schema Elements\par
+}\qj\sb60 \fi0 Equipment, Component, Measurement\par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Commands\par
+}\qj\sb120 \fi0 {\s6\ql\sb240\sa60\keepn\f16\b\fs24 Probe\par
+} \qj\sb60 \fi0 returns machine XML definition\par
+\qj\sb120 \fi0 {\s6\ql\sb240\sa60\keepn\f16\b\fs24 Sample(from, count, xpath, freq)\par
+} \qj\sb120 \fi0 {\s6\ql\sb240\sa60\keepn\f16\b\fs24 Current(xpath)\par
+} \qj\sb60 \fi0 Like Sample, but from is set to the most recent event sequence number that included a measurement, count is set to 1, and freq does not apply since only a single event is returned. \par
+\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 {\*\bkmkstart BMsec_app}0.3{\*\bkmkend BMsec_app}  API\rquote s for Application Developers\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.3.1  REST\par
+}\qj\sb60 \fi0 The following sections describe the REST API (i.e. using HTTP GET) \par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 REST Spec\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Probe\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Sample\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Current\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Parsing Returned Values\par
+}\qj\sb60 \fi0 Use of Expat or other libraries from Ruby (Example using Expat in Perl? )\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.3.2  Microsoft Visual BASIC/VB.NET\par
+}\qj\sb60 \fi0 The VB API is a set of wrappers around the RESTful API that makes event information directly available \par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Overview of VB API\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Probe\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Sample\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Current\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Parsing Returned Values\par
+}\qj\sb60 \fi0 How to access the various fields and elements of returned values in VB\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.3.3  (Optional) C#/Microsoft .NET CLR\par
+}\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 {\*\bkmkstart BMsec_examples}0.4{\*\bkmkend BMsec_examples}  Example Scenarios\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.4.1  One Machine\par
+}\qj\sb60 \fi0 Application Sends Probe to Learn About Machine, requests position of all axes once a second\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.4.2  Multiple Machines\par
+}\qj\sb60 \fi0 example: request measurements by component or by measurement type, for one or more pieces of equipt\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.4.3  Advanced example: Synthesizing State\par
+}\qj\sb60 \fi0 Apps that need to synthesize a representation of \ldblquote machine state\rdblquote  from looking at individual measurements\par
+\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 {\*\bkmkstart BMsec_controller}0.5{\*\bkmkend BMsec_controller}  API\rquote s for Adapting Legacy Controllers to MTConnect\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.5.1  Agent-to-Controller API: Writing a Machine Adapter\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 SHDR push(timestamp, source\\s\\do5({\fs18 i})d, value) to socket\par
+}\qj\sb60 \fi0 XML schema file includes \ldblquote source definition\rdblquote  info that allows it to map source\\s\\do5({\fs18 i})d\rquote s delivered by adapter to MTConnect-level component names units of values are defined in XML schema, so agent can do conversion among units \par
+\qj\fi340 ts \ldblquote \emdash \rdblquote  source\\s\\do5({\fs18 i})d \ldblquote \emdash \rdblquote  value \ldblquote \rdblquote \par
+\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Optional \ldblquote Expecting\rdblquote  call\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 SHDR library in Ruby\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.5.2  Developing an Equipment Schema\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 By Hand-Coding XML\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Using the SchemaBuilder GUI\par
+}\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 {\*\bkmkstart BMsec_manifest}0.6{\*\bkmkend BMsec_manifest}  Manifest of SDK Code Library (What\rquote s In the Zip File)\par
+}\qj\sb60 \fi0 Talk about SVN access to stable and tagged releases of the SDK\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.6.1  bin/\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Schema Builder (mds to xsd)\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 SHDR-level Capture and Replay\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Agent\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 Adapter\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.6.2  lib/rest/\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.6.3  lib/vb/\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.6.4  apps/\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 IPC/CAMX Line Monitor\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.6.5  adapters/\par
+}\qj\sb120 \fi0 {\s5\ql\sb240\sa60\keepn\f16\b\fs24 IPC/CAMX Adapter\par
+}\qj\sb240 \fi0 {\s3\ql\sb240\sa60\keepn\f16\b\fs32 0.7  Appendix 2: Current Vendor Support for MTConnect\par
+}\qj\sb60 \fi0 This section describes specific controller and other equipment for which MTConnect adapters have been created.\par
+\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.7.1  LinuxCNC: Open Source Enhanced Machine Controller\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.7.2  Fanuc Connectivity\par
+}\qj\sb120 \fi0 {\s4\ql\sb240\sa60\keepn\f16\b\fs32 0.7.3  ArchRock Sensor Connectivity\par
+}}}

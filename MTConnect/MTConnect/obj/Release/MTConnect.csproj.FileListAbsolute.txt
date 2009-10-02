@@ -1,0 +1,5 @@
+Y:\projects\AMT\mtconnect\sdk\trunk\dotnet20\MTConnect\MTConnect\obj\Release\ResolveAssemblyReference.cache
+Y:\projects\AMT\mtconnect\sdk\trunk\dotnet20\MTConnect\MTConnect\bin\Release\MTConnect.dll
+Y:\projects\AMT\mtconnect\sdk\trunk\dotnet20\MTConnect\MTConnect\bin\Release\MTConnect.pdb
+Y:\projects\AMT\mtconnect\sdk\trunk\dotnet20\MTConnect\MTConnect\obj\Release\MTConnect.dll
+Y:\projects\AMT\mtconnect\sdk\trunk\dotnet20\MTConnect\MTConnect\obj\Release\MTConnect.pdb

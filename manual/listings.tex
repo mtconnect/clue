@@ -1,0 +1,45 @@
+\section{Code Listings}
+
+\sourcecode{figures/probe-output}{fig:probe-output}{
+  The raw XML output of issuing the Probe command to the Test
+  Agent by fetching from the URL \texttt{\agenturl/probe}.  The lines
+  are numbered for reference only; the line numbers aren't part of the
+  actual XML output.}
+
+\sourcecode{figures/current-output}{fig:current-output}{
+  The raw XML output of issuing the Current command to the Test
+  Agent without any arguments. You can see this by pointing a Web
+  browser at \texttt{\agenturl/probe}.  The lines
+  are numbered for reference only; the line numbers aren't part of the
+  actual XML output.}
+
+\sourcecode{figures/helloworld.cs}{fig:code:helloworld}{
+  Simple C\# program
+  that allows user to specify a component type 
+  and name, and repeatedly calls the Current command to get a new
+  snapshot of samples and then extracts the measurement value(s) from
+  the desired component out of each set of samples.}
+
+\sourcecode{figures/helloworld-output}{fig:code:helloworld-output}{
+  Example output from the simple program in figure~\ref{fig:code:helloworld}.}
+
+\sourcecode{figures/helloworld2.cs}{fig:code:helloworld2}{
+  Given user-specified sample criteria, collect a number of samples of
+  and export them to a Comma-Separated Values (CSV) file, for possible
+  import into a database or spreadsheet.}
+
+\sourcecode{figures/MTConnect.cs}{fig:code:mtconnect-api}{
+  The MTConnect namespace, classes and methods provided by CLUE 1.0 for
+  Microsoft .NET Framework.  The class descriptions are given using C\#
+  syntax but translation to other object-oriented 
+  .NET languages is straightforward.}
+
+\sourcecode{figures/MTCEvent.cs}{fig:code:mtconnect-event}{
+  The definition of an MTConnect Event provided by CLUE 1.0 for
+  Microsoft .NET Framework.
+}
+
+\sourcecode{figures/spiral.ngc}{fig:code:spiral}{
+  An elided version of the GCode program continuously running on the
+  \mtc{} Test Agent (line numbers added).  It repeatedly cuts a spiral pattern.
+}

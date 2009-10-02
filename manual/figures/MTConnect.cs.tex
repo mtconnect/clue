@@ -1,0 +1,69 @@
+ 1 namespace MTConnect
+ 2 {
+ 3     public class MTCAgent
+ 4     {
+ 5         public enum debugLevel { debugNone, debugErrors, debugWarnings, 
+ 6                debugInfo };
+ 7         public debugLevel debugging;
+ 8         public String instanceId;  // instanceID of this Agent
+ 9         public String version;  // MTConnect protocol version of the response
+10         public Int32 nextSequence;  
+11                // next sequence number, updated on each Sample or Current
+12         public XPathNavigator cachedProbe; 
+13                // navigator on root of first Probe() response
+14         // constructor: takes a base URL at which to contact the MTCAgent
+15         public MTCAgent(String url);
+16         // or use this method to discover the Agent(s)
+17         public MTCAgent[] FindByLDAP();   // using default LDAP server
+18         public MTCAgent[] FindByLDAP(String uri); // using specific LDAP svr
+19         public void SquashExceptions(bool squashExceptions);
+20         // Probe, Sample and Current
+21         public MTCProbeResponse Probe();
+22         public MTCSampleResponse Sample(String path, Int32 maxSamples, 
+23                                  Int32 start);
+24         public MTCSampleResponse Current();
+25         public MTCSampleResponse Current(String path);
+26 
+27     }
+28     public struct MTCDevice
+29     {
+30         public String name;
+31         public double sampleRate;
+32         public String uuid;
+33         public String iso841class;
+34         public String serialNumber;
+35         public String manufacturer;
+36     };
+37     ///  You shouldn't normally use this base class (MTCResponse) -- 
+38     ///    use the subclasses MTCProbeResponse and MTCSampleResponse 
+39     public class MTCResponse
+40     {
+41         public XPathNavigator xmlNav;
+42         public XPathDocument responseDoc;
+43         public MTCAgent agent;  // agent from which we got this response
+44         public MTCResponse(String loadPath, MTCAgent agt);
+45         public override String ToString();
+46     }
+47     /// MTCSampleResponse encapsulates the functionality for getting 
+48     /// and parsing the XML document
+49     /// returned by a Current or Sample request to an Agent.
+50     /// You normally shouldn't have to call the constructor directly---
+51     /// instead get an instance of this object by calling Current or Sample.
+52     public class MTCSampleResponse : MTCResponse
+53     {
+54         public MTCSampleResponse(String loadPath, MTCAgent agt);
+55         public MTCEvent[] FindByComponentAndName(String component,String name);
+56         public MTCEvent[] FindByComponentAndName(String component,
+57                           String name, String xPathPredicate);
+58     }
+59     /// MTCProbeResponse encapsulates the functinality for interpreting
+60     /// the response to a Probe request.
+61     /// You normally shouldn't have to call the constructor directly---
+62     /// instead get an instance of this object by calling Probe.
+63     public class MTCProbeResponse : MTCResponse
+64     {
+65         public MTCDevice[] devices;  
+66                // the devices represented in the probe data
+67         public MTCProbeResponse(String loadPath, MTCAgent agt);
+68     }
+69 }

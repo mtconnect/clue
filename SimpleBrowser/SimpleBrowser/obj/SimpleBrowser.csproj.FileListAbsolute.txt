@@ -1,0 +1,7 @@
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\bin\Debug\SimpleBrowser.exe
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\bin\Debug\SimpleBrowser.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\bin\Debug\MTConnect.dll
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\bin\Debug\MTConnect.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\obj\Debug\SimpleBrowser.exe
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleBrowser\SimpleBrowser\obj\Debug\SimpleBrowser.pdb

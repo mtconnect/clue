@@ -1,0 +1,9 @@
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\bin\Debug\MTConnectTest.dll
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\bin\Debug\MTConnectTest.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\bin\Debug\nunit.framework.dll
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\bin\Debug\nunit.framework.xml
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\obj\Debug\MTConnectTest.dll
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\obj\Debug\MTConnectTest.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\obj\Debug\MTConnectTest.csproj.GenerateResource.Cache
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\MTConnectTest\MTConnectTest\obj\Debug\MTConnectTest.Properties.Resources.resources

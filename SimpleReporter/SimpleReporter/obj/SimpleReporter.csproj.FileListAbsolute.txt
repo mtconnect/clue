@@ -1,0 +1,7 @@
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\bin\Debug\SimpleReporter.exe
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\bin\Debug\SimpleReporter.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\bin\Debug\MTConnect.dll
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\bin\Debug\MTConnect.pdb
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\obj\Debug\SimpleReporter.exe
+C:\Documents and Settings\Armando Fox\My Documents\dotnet20\SimpleReporter\SimpleReporter\obj\Debug\SimpleReporter.pdb

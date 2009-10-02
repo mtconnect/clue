@@ -1,0 +1,265 @@
+\section{Client Library, Utilities and Extensions (CLUE) for Microsoft .Net}
+\label{sec:app}
+
+In the previous section we described how to type URL's into a Web
+browser to issue commands to the Agent directly.  This section describes
+how to write client applications for \mtc{} that will do this
+programmatically, using the \mtc{} Client Library, Utilities and
+Extensions (CLUE) for Microsoft .NET Framework~2.0 or
+later.\footnote{Future versions of CLUE may include support for other
+  development environments and languages such as Java, Python and Ruby.}
+
+As you already know, \emph{you don't need any SDK to write MTConnect
+  applications}, as long as your programming language or development
+system includes libraries for using XML, XPath and HTTP.  The CLUE
+libraries and the API's they provide, even though not part of the
+official \mtc{} speification, may help streamline your code.  CLUE uses
+.NET's underlying HTTP and XML/XPath libraries to automate and
+streamline some of the procedures you learned about in the previous
+section.
+
+\boxednote{In fact, once you've made it all the way to the end of this
+  tutorial, you may find it helpful to peruse the source code of CLUE to
+  understand just how the CLUE API calls are converted to HTTP, XML and
+  XPath calls.}
+
+A unique feature of the Microsoft .NET framework is that libraries
+compiled for it can be called from applications in any language
+supported by .NET.  Currently these include C\# (C Sharp), J\# (similar
+to Java), Visual Basic.NET, and many, many others.  Our examples will
+use C\#, but translation to other .NET-supported languages is
+straightforward.
+
+% \boxednote{\textbf{Why aren't there ``convenience libraries'' planned
+% for ANSI~C
+%     programmers?}  We've chosen to
+%   deemphasize ``plain'' C because string-intensive
+%   and networking operations are considerably more cumbersome in C than
+%   they are in Java, .NET, or modern scripting languages such as Perl or
+%   Python; because the class library support for these functions is still
+%   lacking in C compared to other languages; and because on modern hardware
+%   it is unlikely that C's performance advantage will be a
+%   dominant factor in overall performance.}
+
+\subsection{Overview of CLUE for .NET}
+
+We will use C\# for most
+examples, occasionally showing the equivalent VB.Net code.  There are
+three object abstractions provided by the CUL (and therefore three
+classes provided) in the namespace MTConnect:
+
+\begin{enumerate}
+\item MTConnect.MTCClient: represents a connection to an \mtc{}
+  Agent. Remembers the Agent's host and port number and the ``last sequence
+  number'' sample seen from the Agent (section~\ref{sec:cmd:sample}).
+  Provides methods for sending commands such as Probe, Sample, etc.  An
+  application that communicates with multiple Agents would create
+  multiple instances of this object.
+\item MTCResponse: a class that encapsulates a successful response from
+  the Agent.  Given a response message, this class provides methods that
+  let you easily extract specific measurements using just the names of
+  the components (e.g. ``Linear, X'' to get an axis position
+  measurement), or if you wish, get the raw XML.
+\item MTCEvent: given a measurement extracted from an MTCResponse,
+  provides functions to perform unit conversions by cross-referencing
+  the Probe schema.  Converts attribute values to native
+  classes (e.g. converts the \x{timestamp} attribute to a .Net
+  \icode{DateTime} object on which time calculations can be performed).
+\end{enumerate}
+
+A typical application using the .NET CLUE Libraries
+has the following structure:
+
+\begin{enumerate}
+\item Create an instance of an \icode{MTCAgent} object to represent the
+  connection 
+  to a particular Agent.
+\item Issue a Probe command,  which returns an \icode{MTCProbeResponse}
+  object.  Methods on this object tell you about the device(s) connected
+  to the agent, including the devices' manufacturers, serial numbers,
+  and any other MTConnect-provided information.  It also provides 
+  CLUE the information that will be necessary later
+  to associate the correct measurement units with returned samples.
+\item While measurements are still needed:
+  \begin{enumerate}
+  \item Optionally create an XPath expression corresponding to the desired
+    measurements (or use no expression, to get all reportable measurements);
+  \item Call the \icode{Sample} or \icode{Current} method on the Agent
+    object---both of these return an \icode{MTCSampleResponse} object;
+  \item Call \icode{FindByComponentAndName} on the
+    \icode{MTCSampleResponse} object to extract desired measurements,
+    which are returned as \icode{MTCEvent} objects that include the
+    measurement value, units, lane, and other information.
+  \end{enumerate}
+\end{enumerate}
+
+\subsection{Example 1: Hello World for \mtc}
+\label{sec:ex:helloworld}
+
+This first example repeatedly fetches measurement values for a
+particular
+component type and name, 
+e.g. a \x{Linear} type axis named \x{Z}.
+To keep it simple, in this version we will use the
+Current command with no arguments (section~\ref{sec:cmd:current}).
+
+The reason you must specify both the Component type and Name for a
+desired measurement is that the \mtc{} specification guarantees that any
+given \emph{combination} of Component and Name must be unique within a
+device, but either Component or Name by itself might not be.  So there
+might be more than one Component of type Linear (e.g., there could be X,
+Y and Z linear axes), and more than one
+Component whose name is \x{Z} (e.g., a machine-specific property named
+Z), but there can be at most one component whose
+type is Linear \emph{and} whose name is \x{Z}.  Later we will see
+another way to constrain what measurement is desired, by passing a Path
+argument to \icode{Current}.
+
+Here is some example output from that program, where each new set of
+measurements is delivered after each press of the Return key:
+
+\subsubsection{Things To Notice}
+
+CLUE tries to automate some common ``housekeeping'' tasks even in a
+simple program like this example.
+
+\paragraph{Next Sequence.} Along with each set of measurements, the
+program displays the ``next sequence''.  Recall the ``bucket'' model
+whereby the Agent ``fills the bucket'' with measurements and a client
+application removes them.  The ``next sequence'' number is the number of
+the next sample the client has not yet seen.  Later when we use the
+Sample command, we'll show how to use this to make sure we don't miss
+any samples.  The \icode{MTCAgent} object automatically parses this
+value from the output of every Sample or Current command (e.g., see
+line~3 of figure~\ref{fig:current-output}) and remembers it for you.
+
+\paragraph{Units.} The units of each measurement, if known, are
+reported.  The first time you do a Probe, the \icode{MTCAgent} object
+automatically remembers the unit types associated with each measurement
+(e.g., see lines~13, 18, 25, etc. in figure~\ref{fig:probe-output})
+
+
+
+\subsubsection{Using Fewer Constraints}
+
+Change lines 23--24 of Example~\ref{fig:code:helloworld}  as follows:
+
+\begin{verbatim}
+ 23   String name = String.Empty;
+ 24   String comp = "Linear";
+
+\end{verbatim}
+
+Then rebuild and re-run the program.  Now, each time you press Return
+you should see a total of 6 measurements per sample: a commanded and an
+actual position for each of the X, Y and Z Linear axes.
+
+What happened? Because we did not specify a particular component name
+(we used \icode{String.Empty}) in line 23, we got samples for \emph{all}
+components whose component type is \icode{Linear}.  In fact, this would
+correspond directly to the XPath expression 
+\icode{//ComponentStream[@component="Linear"]}, and you can browse the
+source code of CLUE (file \texttt{Client.cs}) to
+verify that this is exactly what's being done.
+
+\boxednote{Why use String.Empty?}{\icode{String.empty} is the
+  ``natural'' way of declaring 
+  an empty string in C\#; you could also pass
+  the empty string literal \texttt{""}, but \icode{String.empty} is more
+  efficient since it doesn't create a new object.  Also, CLUE
+  also allows you to pass the value
+  \icode{null} in this case, 
+  though in general \icode{null} and the empty string are
+  \emph{not} interchangeable.}
+
+If you set \icode{comp} to the empty string but pass a value (such as
+\icode{"X"}) for \icode{name}, you'll get measurement samples for all
+components regardless of their type whose name matches \icode{"X"}.
+(For example, if the same Agent is reporting on multiple distinct sets
+of linear axes, more than one of which has an axis called \icode{X},
+this combination of arguments would give back samples for all of the X
+axes.)
+
+
+\subsubsection{Other Ways To Use \icode{FindByComponentAndName}}
+
+An alternative version of \icode{FindByComponentAndName} allows
+you to specify additional criteria to match on certain attributes.  For
+example, if you know you only want to look at actual positions or
+velocities and not commanded ones, i.e. position or velocity
+measurements whose \emph{subType} attribute matches \icode{ACTUAL}, you
+could pass the XPath expression
+\icode{//[@subType="ACTUAL"]}
+to \icode{FindByComponentAndName}.
+So, for example, the following call would extract only commanded position
+measurements for \emph{any} Linear axis:
+
+\begin{quotation}
+  \icode{evts = resp.FindByComponentAndName("Linear", $\neg$ \\
+    String.empty, "//[@subType='COMMANDED']");}
+\end{quotation}
+
+Note the use of single quotes inside the double quotes to delimit the
+constraint string.  We could also have used the standard C\# syntax for
+including quotes in a string:
+\icode{"//@subType=$\backslash$"COMMANDED$\backslash$"}.
+
+Finally, if you want to just specify an XPath expression directly to
+capture all of the constraints, you can use \icode{FindByXPath} to do
+just that.  You can pass it a string or a precompiled XPathExpression
+object 
+(this is an advanced feature of the .NET support for XPath, so we'll
+just illustrate using a string.)  The following call to
+\icode{FindByXpath} also returns only commanded position measurements
+for Linear axes (compare it to the example above):
+
+\begin{quotation}
+  \icode{evts = resp.FindByXPath("//Linear//[@subType='COMMANDED']");}
+\end{quotation}
+
+\subsubsection{Discussion}
+
+In our simple example, we didn't pass any arguments to Current. As you
+recall from section~\ref{sec:cmd:current}, this causes Current to return
+a ``complete snapshot'' of all reportable measurements, even though our
+simple app is then only selecting a small subset of them to examine.
+
+Because our example machine is pretty simple, this is probably OK.  But
+if we were dealing with a more complex production machine that can
+report hundreds of measurements at a time, it's inefficient to ask for
+everything just to look at one or two items.  In that case, we'd be
+better off passing a Path argument to Current, to narrow down which
+measurements will be returned.  An \gloss{overloaded} version of the
+\icode{Current} method of \icode{MTCAgent} allows us to pass an XPath
+expression directly to constrain ``up front'' which measurements are
+reported.  To illustrate this technique,
+example~\ref{fig:code:helloworld2} shows an alternative version of our
+simple client in which we only request the Power subsystem's
+measurements when we do the Current command; then when we call
+\icode{FindByComponentAndName} we just pass empty strings for both
+\icode{comp} and \icode{name}, since we know there's just one set of
+measurements in the reply anyway.
+
+
+\subsection{Example 2: Working With Samples}
+\label{sec:example-samples}
+
+In this section we show example code for working with larger volumes of
+samples at once.  Rather than just using the Current command to get
+subsequent ``snapshots'' of the machine state, we'll use the Sample
+command to periodically download a batch of samples and export it for
+use by other applications.
+
+
+\label{sec:example-file}
+
+In this section we show example code to capture some data according to
+user specifications and then write that data into a CSV (Comma-Separated
+Values) file.  Many popular tools, including databases such as Microsoft
+Access or MySQL and spreadsheets such as Microsoft Excel, can import CSV
+files directly.
+
+\subsection{Example 4: Alarm Monitoring}
+\label{sec:example-alarm}
+
+TBD

@@ -1,0 +1,90 @@
+
+\section{Automatic Discovery Using LDAP}
+\label{sec:discovery}
+
+So far, all the examples have assumed that the client application knows
+the base URL at which to contact the Agent
+(e.g. \icode{http://agent.mtconnect.org/LinuxCNC}).
+In some applications, this may not be known in advance.  For example, an
+application might be written to automatically locate (discover) all
+\mtc-enabled machines in the environment and synthesize a simple UI for
+monitoring their power and controller states.
+
+To accommodate these scenarios, the \mtc{} specification includes
+functionality for a client to \emph{discover} the existence of any
+Agents in its environment.  The protocol used for discovery is
+\gloss{LDAP}, the Lightweight Directory Access Protocol (also known in
+the Windows world as Active Directory), designed as a simple way for
+clients to query a hierarchical directory of information.  LDAP supports
+authentication, that is, the LDAP server may require the client
+application to supply a password or other credentials in order to be
+allowed to look things up.
+
+The following three caveats apply to our brief description of discovery
+in \mtc:
+
+\begin{enumerate}
+
+\item 
+As with XPath, LDAP is quite general but we will focus only on the small
+subset of its capabilities required to illustrate how it \mtc{} is
+supported.  For more detailed information, including information on
+administering an LDAP server, we suggest consulting one of the many
+available publications on Windows Active Directory.
+
+\item Also as with XPath, the CLUE libraries
+shield simple applications from dealing directly with LDAP.
+We'll focus on examples that take advantage of this functionality, but
+.Net's technical documentation describes its excellent LDAP support
+should you wish to do more.
+
+\item Keep in mind that the use of LDAP is entirely optional in \mtc{}.
+  \mtc{} specifies how Agents should appear in an LDAP directory
+  \emph{if} such a directory is available and \emph{if} the
+  administrator of the installation chooses to list the Agents  in it;
+  neither  of these are required by the specification.
+\end{enumerate}
+
+
+\subsection{LDAP In a Nutshell}
+
+Which LDAP server? or default
+
+Which attributes must be specified?
+
+
+\subsection{LDAP Support in CLUE}
+\label{sec:ldap-clue}
+
+In section~\ref{sec:app} you saw how to create a new \mtc{} Agent object
+by giving the URL of an Agent.  CLUE also provides a class-level method
+called \icode{FindByLDAP} that will construct and send the necessary
+LDAP query to automatically find any Agent(s) in the environment.  It
+returns an array of zero or more \icode{MTCAgent} objects.  If the
+array has length zero, it means no Agents could be found via LDAP, and
+you can look at the class-level variable \icode{errors} for a
+human-readable description of why not.
+
+There are three versions of \icode{FindByLDAP}.  The simplest one takes
+no arguments and uses the default LDAP server (see
+section~\ref{sec:ldap-intro}).  The second version takes the hostname of
+the LDAP server to use, and contacts it on the standard LDAP port (TCP
+port 389).  The third version allows you to also specify a port number
+in case the LDAP server is running on a nonstandard port.
+
+Here's an example of locating an agent via LDAP:
+
+\listing{figures/helloworld_ldap}{fig:code:helloworld_ldap}{
+  Locating an Agent using the CLUE support for LDAP.
+}
+
+
+\boxednote{Why doesn't AMT provide a reference LDAP Server?}{LDAP
+  servers are typically part of an organization's IT infrastructure and
+  LDAP servers are already included with most enterprise IT systems
+  including Windows and Linux server systems.  Configuring an LDAP
+  server and populating it with \mtc information is typically in the
+  purview of IT staff and is closely controlled, so there's no point in
+  providing a reference LDAP server.}
+
+

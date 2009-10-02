@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:MTConnectDevices xsi:schemaLocation="urn:mtconnect.com:MTConnectDevices:0.9 http://www.mtconnect.org/schemas/MTConnectDevices.xsd" xmlns:m="urn:mtconnect.com:MTConnectDevices:0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Header sender="localhost" bufferSize="100000" creationTime="2008-07-02T17:44:22-07:00" version="0.9" instanceId="1214527986"/>
+  <Devices>
+    <Device iso841Class="6" uuid="linux-01" name="LinuxCNC" sampleRate="100.0" id="1">
+      <Description manufacturer="NIST" serialNumber="01"/>
+      <DataItems>
+        <DataItem type="ALARM" name="alarm" category="EVENT" id="10"/>
+      </DataItems>
+      <Components>
+        <Axes name="Axes" id="3">
+          <DataItems>
+            <DataItem type="PATH_FEEDRATE" name="path_feedrate" category="SAMPLE" id="11" nativeUnits="PERCENT" subType="OVERRIDE" units="PERCENT"/>
+          </DataItems>
+          <Components>
+            <Spindle name="S" id="7">
+              <DataItems>
+                <DataItem type="SPINDLE_SPEED" name="Sspeed" category="SAMPLE" id="18" nativeUnits="REVOLUTION/MINUTE" subType="ACTUAL" units="REVOLUTION/MINUTE">
+                  <Source>spindle_speed</Source>
+                </DataItem>
+                <DataItem type="PRESSURE" name="Jet" id="31"/>
+              </DataItems>
+            </Spindle>
+            <Linear name="X" id="4">
+              <DataItems>
+                <DataItem type="POSITION" name="Xact" category="SAMPLE" id="12" nativeUnits="MILLIMETER" subType="ACTUAL" units="MILLIMETER"/>
+                <DataItem type="POSITION" name="Xcom" category="SAMPLE" id="13" nativeUnits="MILLIMETER" subType="COMMANDED" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+            <Linear name="Y" id="5">
+              <DataItems>
+                <DataItem type="POSITION" name="Yact" category="SAMPLE" id="14" nativeUnits="MILLIMETER" subType="ACTUAL" units="MILLIMETER"/>
+                <DataItem type="POSITION" name="Ycom" category="SAMPLE" id="15" nativeUnits="MILLIMETER" subType="COMMANDED" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+            <Linear name="Z" id="6">
+              <DataItems>
+                <DataItem type="POSITION" name="Zact" category="SAMPLE" id="16" nativeUnits="MILLIMETER" subType="ACTUAL" units="MILLIMETER"/>
+                <DataItem type="POSITION" name="Zcom" category="SAMPLE" id="17" nativeUnits="MILLIMETER" subType="COMMANDED" units="MILLIMETER"/>
+              </DataItems>
+            </Linear>
+          </Components>
+        </Axes>
+        <Controller name="Controller" id="8">
+          <DataItems>
+            <DataItem type="LINE" name="line" category="EVENT" id="19" subType="ACTUAL"/>
+            <DataItem type="CONTROLLER_MODE" name="mode" category="EVENT" id="20"/>
+            <DataItem type="PROGRAM" name="program" category="EVENT" id="21"/>
+            <DataItem type="EXECUTION" name="execution" category="EVENT" id="22"/>
+          </DataItems>
+        </Controller>
+        <Power name="power" id="2">
+          <DataItems>
+            <DataItem type="POWER_STATUS" name="power" category="EVENT" id="9"/>
+          </DataItems>
+        </Power>
+      </Components>
+    </Device>
+  </Devices>
+</m:MTConnectDevices>

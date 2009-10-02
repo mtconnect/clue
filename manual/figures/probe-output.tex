@@ -1,0 +1,90 @@
+\begin{verbatim}
+
+ 1 <?xml version="1.0" encoding="UTF-8"?>
+ 2 <m:MTConnectDevices
+ 3    xsi:schemaLocation="urn:mtconnect.com:MTConnectDevices:0.9
+ 4                        http://www.mtconnect.org/schemas/MTConnectDevices.xsd"
+ 5    xmlns:m="urn:mtconnect.com:MTConnectDevices:0.9"
+ 6    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ 7   <Header sender="localhost" creationTime="2008-05-23T11:08:55-07:00"
+ 8           bufferSize="100000" version="0.9" instanceId="1209943337"/>
+ 9   <Devices>
+10     <Device sampleRate="100.0" name="LinuxCNC" iso841Class="6" uuid="linux-01">
+11       <Description serialNumber="01" manufacturer="NIST"/>
+12       <DataItems>
+13         <DataItem type="ALARM" name="alarm" category="EVENT" id="2"/>
+14       </DataItems>
+15       <Components>
+16         <Axes name="Axes">
+17           <DataItems>
+18             <DataItem type="PATH_FEEDRATE" subType="OVERRIDE"
+19                       name="path_feedrate" units="PERCENT"
+20                       category="SAMPLE" id="3" nativeUnits="PERCENT"/>
+21           </DataItems>
+22           <Components>
+23             <Spindle name="S">
+24               <DataItems>
+25                 <DataItem type="SPINDLE_SPEED" subType="ACTUAL"
+26                           name="Sspeed" units="REVOLUTION/MINUTE"
+27                           category="SAMPLE" id="10"
+28                           nativeUnits="REVOLUTION/MINUTE">
+29                   <Source>spindle_speed</Source>
+30                 </DataItem>
+31               </DataItems>
+32             </Spindle>
+33             <Linear name="X">
+34               <DataItems>
+35                 <DataItem type="POSITION" subType="ACTUAL" name="Xact"
+36                           units="MILLIMETER" category="SAMPLE" id="4"
+37                           nativeUnits="MILLIMETER"/> 
+38                 <DataItem type="POSITION"
+39                           subType="COMMANDED" name="Xcom" units="MILLIMETER"
+40                           category="SAMPLE" id="5" nativeUnits="MILLIMETER"/>
+41               </DataItems>
+42             </Linear>
+43             <Linear name="Y">
+44               <DataItems>
+45                 <DataItem type="POSITION" subType="ACTUAL" name="Yact"
+46                           units="MILLIMETER" category="SAMPLE" id="6"
+47                           nativeUnits="MILLIMETER"/> 
+48                 <DataItem type="POSITION"
+49                           subType="COMMANDED" name="Ycom" units="MILLIMETER"
+50                           category="SAMPLE" id="7" nativeUnits="MILLIMETER"/>
+51               </DataItems>
+52             </Linear>
+53             <Linear name="Z">
+54               <DataItems>
+55                 <DataItem type="POSITION" subType="ACTUAL" name="Zact"
+56                           units="MILLIMETER" category="SAMPLE" id="8"
+57                           nativeUnits="MILLIMETER"/> 
+58                 <DataItem type="POSITION"
+59                           subType="COMMANDED" name="Zcom" units="MILLIMETER"
+60                           category="SAMPLE" id="9" nativeUnits="MILLIMETER"/>
+61               </DataItems>
+62             </Linear>
+63           </Components>
+64         </Axes>
+65         <Controller name="Controller">
+66           <DataItems>
+67             <DataItem type="LINE" subType="ACTUAL" name="line"
+68                       category="EVENT" id="11"/> 
+69             <DataItem type="CONTROLLER_MODE"
+70                       name="mode" category="EVENT" id="12"/>
+71             <DataItem type="PROGRAM" name="program" category="EVENT"
+72                       id="13"/> 
+73             <DataItem type="EXECUTION" name="execution"
+74                       category="EVENT" id="14"/>
+75           </DataItems>
+76         </Controller>
+77         <Power name="power">
+78           <DataItems>
+79             <DataItem type="POWER_STATUS" name="power" category="EVENT"
+80                       id="1"/>
+81           </DataItems>
+82         </Power>
+83       </Components>
+84     </Device>
+85   </Devices>
+86 </m:MTConnectDevices>
+
+\end{verbatim}

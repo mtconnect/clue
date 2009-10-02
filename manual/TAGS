@@ -1,0 +1,119 @@
+
+app.tex,520
+\section{API's for Application Developers}API's1,0
+\label{sec:app}sec:app2,43
+\subsection{REST}REST4,60
+  example in figure~\ref{fig:example_xml}fig:example_xml25,1161
+\subsection{Microsoft .NET Framework}Microsoft48,2294
+\subsubsection{Overview of VB API}Overview59,2757
+\subsubsection{Probe}Probe61,2793
+\subsubsection{Sample}Sample63,2816
+\subsubsection{Current}Current65,2840
+\subsubsection{Parsing Returned Values}Parsing67,2865
+\subsection{(Optional) C\#/Microsoft .NET CLR}(Optional)70,2977
+
+arch.tex,1815
+\section{Architectural Overview of \mtc}Architectural2,1
+\subsection{A Note on \mtc's ``Native'' Environment}A4,43
+\subsection{Architectural Concepts}Architectural35,1775
+\subsubsection{Agents}Agents60,2980
+\label{sec:agent}sec:agent61,3003
+is shown in figure~\ref{fig:example_environment}fig:example_environment69,3447
+  \label{fig:example_environment}fig:example_environment78,3759
+Adapters and their use in section~\ref{sec:controller}sec:controller112,5303
+\subsubsection{Client}Client114,5360
+\label{sec:client}sec:client115,5383
+\subsubsection{Equipment Schema}Equipment123,5691
+figure~\ref{fig:equipment_hierarchy}fig:equipment_hierarchy141,6583
+  tutorial introduction at~\cite{xpath_tutorial}xpath_tutorial146,6931
+    depicted in figure~\ref{fig:example_environment}fig:example_environment165,7877
+  \label{fig:equipment_hierarchy}fig:equipment_hierarchy166,7932
+\subsubsection{Measurements and Events}Measurements185,8743
+\label{sec:measurements}sec:measurements186,8783
+\subsection{Commands}Commands208,9985
+section~\ref{sec:app}sec:app213,10206
+example of such a client; see section~\ref{sec:example_client_archiver}sec:example_client_archiver236,11616
+\subsubsection{The Probe Command}The240,11727
+\label{sec:cmd:probe}sec:cmd:probe241,11761
+client library used (see section~\ref{sec:apps}sec:apps253,12365
+Referring back to figure~\ref{fig:equipment_hierarchy}fig:equipment_hierarchy261,12738
+\label{tab:probe_examples}tab:probe_examples271,13107
+\subsubsection{The Sample Command}The274,13147
+\label{sec:sample}sec:sample275,13182
+\subsubsection{Data Representation}Data324,15783
+Section~\ref{sec:apps}sec:apps328,15949
+figure~\ref{fig:equipment_hierarchy}fig:equipment_hierarchy342,16811
+\label{fig:example_xml}fig:example_xml368,17766
+
+controller.tex,496
+\section{API's for Adapting Legacy Controllers to MTConnect}API's2,1
+\label{sec:controller}sec:controller3,62
+\subsection{Agent-to-Controller API: Writing a Machine Adapter}Agent-to-Controller5,86
+\subsubsection{SHDR Push}SHDR7,151
+\subsubsection{SHDR Expecting}SHDR18,498
+\subsubsection{SHDR library in Ruby}SHDR20,530
+\subsection{Developing an Equipment Schema}Developing22,568
+\subsubsection{By Hand-Coding XML}By24,613
+\subsubsection{Using the SchemaBuilder GUI}Using26,649
+
+draft.tex,26
+\def\Draft #1{\Draft1,0
+
+examples.tex,387
+\section{Example Scenarios}Example2,1
+\label{sec:examples}sec:examples3,29
+\subsection{One Machine}One5,51
+figure~\ref{fig:example_environment}fig:example_environment10,264
+equipment hierarchy in figure~\ref{fig:equipment_hierarchy}fig:equipment_hierarchy11,335
+\subsection{Multiple Machines}Multiple61,2293
+\subsection{Advanced example: Synthesizing State}Advanced67,2427
+
+intro.tex,638
+\section{Introduction}Introduction1,0
+\subsection{What Is MTConnect?}What3,24
+  section~\ref{sec:license}sec:license8,258
+\subsection{How to Use This Document}How22,1030
+\item Section~\ref{sec:arch}sec:arch36,1697
+\item Section~\ref{sec:app}sec:app39,1862
+\item Section~\ref{sec:examples}sec:examples43,2115
+\item Section~\ref{sec:controller}sec:controller47,2339
+\item Section~\ref{sec:manifest}sec:manifest51,2567
+\subsection{This Is Not A Spec}This55,2698
+The definitive MTConnect specification~\cite{mtconnect_spec}mtconnect_spec57,2731
+\subsection{License, Copyright and Trademark Information}License,66,3160
+
+manifest.tex,826
+\section{Manifest of SDK Code Library (What's In the Zip File)}Manifest2,1
+\label{sec:manifest}sec:manifest3,65
+\subsection{.Net Classes for MTConnect}.Net7,157
+\label{sec:dotnetlibrary}sec:dotnetlibrary8,197
+\subsubsection{Client Libraries}Client10,224
+\subsection{MTConnect Agent (Ruby)}MTConnect76,2438
+\label{sec:manifest-agent}sec:manifest-agent77,2474
+\subsection{Schema Builder (mds to xsd)}Schema79,2502
+\subsubsection{SHDR-level Capture and Replay}SHDR-level81,2544
+\subsubsection{Agent}Agent83,2591
+\subsubsection{Adapter}Adapter85,2614
+\subsection{lib/rest/}lib/rest/87,2639
+\subsection{lib/vb/}lib/vb/89,2663
+\subsection{apps/}apps/91,2685
+\subsubsection{IPC/CAMX Line Monitor}IPC/CAMX93,2705
+\subsection{adapters/}adapters/95,2744
+\subsubsection{IPC/CAMX Adapter}IPC/CAMX97,2768
+
+manual.tex,162
+\newcommand{\tip}\tip11,275
+\newcommand{\icode}\icode12,393
+\newcommand{\bug}\bug13,429
+\newcommand{\website}\website14,469
+\newcommand{\mtc}\mtc15,523
+
+vendor.tex,345
+\section{Appendix 2: Current Vendor Support for MTConnect}Appendix2,1
+\subsection{LinuxCNC: Open Source Enhanced Machine Controller}LinuxCNC:7,218
+\subsection{Fanuc Connectivity}Fanuc9,282
+\subsection{IPC-CAMX Connectivity}IPC-CAMX11,315
+\label{sec:ipc_camx}sec:ipc_camx12,350
+\subsection{ArchRock Sensor Connectivity}ArchRock15,373
+
+revdate.tex,0

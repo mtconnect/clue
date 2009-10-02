@@ -1,0 +1,151 @@
+\section{Introduction}
+
+\subsection{What Is \mtc?}
+
+\mtc\footnote{MTConnect is a trademark of the
+  Association for Manufacturing Technology.  While this document and the
+  software described in it are licensed  royalty-free as described in
+  section~\ref{sec:license}, use of the MTConnect trademark must be
+  approved by The Association for Manufacturing Technology, as described
+  on \website.}
+is a standard that codifies a simple  \emph{command
+  set}  and \emph{data representation} for the easy exchange of
+manufacturing data.  White papers and overview documents describing
+\mtc{} conceptually can be found at \website.
+
+\mtc{} is a lightweight standard because it is built on top of mature
+open standards that are functionality-rich, widely deployed, understood
+by many programmers, and supported by many development tools.
+Both \mtc and all the standards on which it depends
+are unencumbered from an intellectual property standpoint:
+specifications can be freely downloaded by
+anyone (though this isn't necessary in order to successfully use \mtc),
+and no royalties are required in order to implement the standards.  See
+\website{} for more detailed information on licensing.
+
+\subsection{Purpose and Scope of This Document}
+
+Since \mtc{} is based entirely on 100\% open standards, \textbf{no SDK}
+is necessary to create \mtc{} applications.  Nonetheless, AMT provides a
+set of Client Libraries, Utilities and Extensions (CLUE) to facilitate
+``getting you off the ground'' with simple applications that wish to
+avoid dealing directly with HTTP and XML altogether.  The current
+version of CLUE, described in this tutorial, works with the Microsoft
+.NET framework.  .NET is \emph{not} an open standard and
+currently runs only on Windows, but we chose to support it because of
+its wide popularity and customer demand.  The CLUE libraries themselves
+are released under the same liberal open-source license as all other
+\mtc{} software; only .NET itself is proprietary, not the
+.NET-compatible code provided in the form of the CLUE libraries.
+
+\subsubsection{Goals}
+
+\begin{itemize}
+\item A ``quick start'', tutorial-style guide
+for engineers wishing to write applications
+that collect and analyze data from \mtc-compliant equipment.  
+\item An overview of both the \mtc{} ``native'' API's (using XML and
+  HTTP) and the \mtc{} Client Utility Library for Microsoft .NET
+  Framework.
+\end{itemize}
+
+\subsubsection{Non-Goals}
+
+\begin{itemize}
+\item  \textbf{Not a specification:}  The definitive
+MTConnect specification can always be found at \website.  
+\item \textbf{Completeness:}
+While all the
+examples presented are correct and \mtc-compliant
+at the time of writing, we do not use or describe every
+feature of \mtc{} here, nor do we guarantee that these
+examples will remain correct as the specification evolves.
+\item The CLUE library is built on top of .NET's excellent support for
+  HTTP, XML and XPath.  This document does \emph{not} describe how to
+  write applications using those underlying libraries directly.  You are
+  encouraged to browse the heavily-commented (and open source) CLUE code
+  in addition to the wealth of available literature on programming XML
+  and XPath using .NET.
+\item This guide does \emph{not} explain how to design \mtc-compliant
+  controllers or create adapters to make legacy controllers
+  \mtc-compliant. The separate
+\mtc{} Implementor's Guide covers those topics.
+\end{itemize}
+
+\subsubsection{Assumptions and Prerequisites}
+
+The intended audience of this document should:
+\begin{itemize}
+\item Have basic knowledge of using Web applications
+\item Have experience developing code in one or more modern programming
+  languages or frameworks (C/C++, C\#, Microsoft .Net, Java, etc.)
+\item Understand the basic concepts of Object-Oriented Programming (OOP)
+  at the level of a language such as Java, C++ or C\#.
+\end{itemize}
+
+\subsubsection{Topics Covered}
+
+\begin{enumerate}
+\item Section~\ref{sec:arch} describes the architectural concepts and
+  components behind \mtc{} and should be read by everyone who wants
+  to use \mtc{} in any way.  It describes 
+  how to construct and transmit
+  commands to an \mtc{} Agent and how to interpret the responses to
+  those commands encoded in XML (eXtensible Markup Language), all using
+  an ordinary Web browser.
+\item Section~\ref{sec:apps} describes how to write client applications
+  for \mtc{} using the AMT-supplied Client Library, Utilities and
+  Extensions (CLUE) for Microsoft .NET.  The CLUE libraries are not part
+  of the \mtc{} specification, but they streamline the task of writing
+  simple \mtc{} applications.
+\comment{
+\item Section~\ref{sec:discovery} describes how a client application can
+  automatically discovery \mtc-compliant devices using the optional
+  discovery capabilities of \mtc{} via LDAP, the Lightweight Directory
+  Access Protocol (a/k/a Windows Active Directory).  Not all
+  \mtc{} installations  will include discovery functionality, so it is
+  not a required part of the specification.
+}
+\end{enumerate}
+
+
+
+\subsection{License, Copyright and Trademark Information}
+\label{sec:license}
+
+\subsubsection{Software License}
+
+You are free to use the CLUE libraries and any AMT-provided example code
+in your own commercial or
+noncommercial products without paying any royalty or notifying AMT, as
+long as you acknowledge AMT's copyright on the underlying code, agree
+not to hold AMT responsible for any aspect of the code's behavior, and
+do not use the name(s) of AMT to endorse or promote your products
+without AMT's express permission.
+
+(Keep in mind that there are many, many open source implementations of
+HTTP, XML and XPath libraries available for a variety of platforms; you
+can also use any of those in lieu of CLUE.)
+
+The following are the terms of the license (also available at \website),
+as of this printing
+\input{revdate}:
+
+\plaintextfile{license.txt}
+
+The following trademarks, registered trademarks, or trade names appear
+in this documentation for identification purposes only, and do not
+indicate any affiliation with nor endorsement by The Association for
+Manufacturing Technology or the \mtc{} Consortium.
+
+Visual Basic, Visual Studio, VB.NET, .NET Framework, 
+C\#, J\#, Microsoft Excel, Microsoft Windows, Microsoft Active Directory,
+Microsoft Internet Information Server (IIS), Microsoft Access,
+and Microsoft Internet Explorer are trademarks of Microsoft Corporation.  
+Firefox is a trademark of Mozilla.  Safari is a trademark of Apple Inc. 
+% Fanuc is a trademark of GE~Fanuc~Automation.  
+% ArchRock is a trademark of ArchRock Corporation.  
+IPC-CAMX is a trademark of IPC--Association Connecting Electronics Industries.
+MySQL is a trademark of MySQL~AB.
+
+% \subsubsection{Document License}

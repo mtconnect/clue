@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<m:MTConnectStreams xmlns:m="urn:mtconnect.com:MTConnectStreams:0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:mtconnect.com:MTConnectStreams:0.9 http://www.mtconnect.org/schemas/MTConnectStreams.xsd">
+  <Header sender="localhost" bufferSize="100000" creationTime="2008-07-02T17:43:29-07:00" nextSequence="16439863" version="0.9" instanceId="1214527986"/>
+  <Streams>
+    <DeviceStream uuid="linux-01" name="LinuxCNC">
+      <ComponentStream componentId="5" name="Y" component="Linear">
+        <Samples>
+          <m:Position name="Yact" dataItemId="14" sequence="16439853" subType="ACTUAL" timestamp="2008-07-02T16:51:35.305">-0.9969015718</m:Position>
+          <m:Position name="Ycom" dataItemId="15" sequence="16439854" subType="COMMANDED" timestamp="2008-07-02T16:51:35.305">-1.0023406268</m:Position>
+          <m:Position name="Yact" dataItemId="14" sequence="16439857" subType="ACTUAL" timestamp="2008-07-02T16:51:35.415">-1.0310739279</m:Position>
+          <m:Position name="Ycom" dataItemId="15" sequence="16439858" subType="COMMANDED" timestamp="2008-07-02T16:51:35.415">-1.0360782598</m:Position>
+          <m:Position name="Yact" dataItemId="14" sequence="16439861" subType="ACTUAL" timestamp="2008-07-02T16:51:35.525">-1.0634551048</m:Position>
+          <m:Position name="Ycom" dataItemId="15" sequence="16439862" subType="COMMANDED" timestamp="2008-07-02T16:51:35.525">-1.0684594194</m:Position>
+        </Samples>
+      </ComponentStream>
+      <ComponentStream componentId="4" name="X" component="Linear">
+        <Samples>
+          <m:Position name="Xact" dataItemId="12" sequence="16439855" subType="ACTUAL" timestamp="2008-07-02T16:51:35.305">1.2758778334</m:Position>
+          <m:Position name="Xcom" dataItemId="13" sequence="16439856" subType="COMMANDED" timestamp="2008-07-02T16:51:35.415">1.2438246703</m:Position>
+          <m:Position name="Xact" dataItemId="12" sequence="16439859" subType="ACTUAL" timestamp="2008-07-02T16:51:35.415">1.2484285831</m:Position>
+          <m:Position name="Xcom" dataItemId="13" sequence="16439860" subType="COMMANDED" timestamp="2008-07-02T16:51:35.525">1.214034395</m:Position>
+        </Samples>
+      </ComponentStream>
+    </DeviceStream>
+  </Streams>
+</m:MTConnectStreams>

@@ -1,0 +1,84 @@
+ 1 <?xml version="1.0" encoding="UTF-8"?>
+ 2 <m:MTConnectStreams xmlns:m="urn:mtconnect.com:MTConnectStreams:0.9"
+ 3                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ 4                  xsi:schemaLocation="urn:mtconnect.com:MTConnectStreams:0.9
+ 5                  http://www.mtconnect.org/schemas/MTConnectStreams.xsd"> 
+ 6   <Header sender="localhost" creationTime="2008-05-23T11:18:36-07:00"
+ 7           bufferSize="100000" version="0.9" instanceId="1209943337"
+ 8           nextSequence="52056912"/>
+ 9   <Streams>
+10     <DeviceStream name="LinuxCNC" uuid="linux-01">
+11       <ComponentStream
+12          path="/Device[@name='LinuxCNC']//Axes[@name='Axes']" name="Y"
+13          component="Linear"> 
+14         <Samples>
+15           <m:Position itemId="6" subType="ACTUAL" sequence="52056909"
+16                       timestamp="2008-05-23T11:18:36.418">0.9901518226
+17           </m:Position> 
+18           <m:Position itemId="7" subType="COMMANDED"
+19                       sequence="52056910"
+20                       timestamp="2008-05-23T11:18:36.418">0.9949269086
+21           </m:Position>
+22         </Samples>
+23       </ComponentStream>
+24       <ComponentStream
+25          path="/Device[@name='LinuxCNC']//Axes[@name='Axes']" name="Z"
+26          component="Linear"> 
+27         <Samples>
+28           <m:Position itemId="9" subType="COMMANDED"
+29                       sequence="52056362"
+30                       timestamp="2008-05-23T11:18:20.986">-0.1</m:Position>
+31           <m:Position itemId="8" subType="ACTUAL" sequence="52056361"
+32                       timestamp="2008-05-23T11:18:20.986">-0.1000000015
+33           </m:Position>
+34         </Samples>
+35       </ComponentStream>
+36       <ComponentStream
+37          path="/Device[@name='LinuxCNC']//Axes[@name='Axes']" name="S"
+38          component="Spindle"> 
+39         <Samples>
+40           <m:SpindleSpeed itemId="10" subType="ACTUAL"
+41                           sequence="52056246"
+42                           timestamp="2008-05-23T11:18:16.372">3400.0
+43           </m:SpindleSpeed>
+44         </Samples>
+45       </ComponentStream>
+46       <ComponentStream path="/Device[@name='LinuxCNC']" name="power"
+47                        component="Power"> 
+48         <Events>
+49           <m:PowerStatus itemId="1" sequence="4"
+50                          timestamp="2008-05-04T16:22:18.371">ON
+51           </m:PowerStatus>
+52         </Events>
+53       </ComponentStream>
+54       <ComponentStream path="/Device[@name='LinuxCNC']"
+55                        name="Controller" component="Controller"> 
+56         <Events>
+57           <m:Execution itemId="14" sequence="52056316"
+58                        timestamp="2008-05-23T11:18:18.402">EXECUTING
+59           </m:Execution>
+60           <m:ControllerMode itemId="12" sequence="3"
+61                             timestamp="2008-05-04T16:22:18.371">AUTOMATIC
+62           </m:ControllerMode>
+63           <m:Program itemId="13" sequence="6"
+64                      timestamp="2008-05-04T16:22:18.371">
+65             /home/mtconnect/emc2/nc_files/examples/spiral.ngc
+66           </m:Program>
+67         </Events>
+68       </ComponentStream>
+69       <ComponentStream
+70          path="/Device[@name='LinuxCNC']//Axes[@name='Axes']" name="X"
+71          component="Linear"> 
+72         <Samples>
+73           <m:Position itemId="4" subType="ACTUAL" sequence="52056911"
+74                       timestamp="2008-05-23T11:18:36.418">-1.6620382071
+75           </m:Position>
+76           <m:Position itemId="5" subType="COMMANDED"
+77                       sequence="52056908"
+78                       timestamp="2008-05-23T11:18:36.418">-1.6591126305
+79           </m:Position>
+80         </Samples>
+81       </ComponentStream>
+82     </DeviceStream>
+83   </Streams>
+84 </m:MTConnectStreams>

@@ -1,0 +1,261 @@
+This is pdfeTeX, Version 3.141592-1.21a-2.2 (Web2C 7.5.4) (format=pdflatex 2007.11.30)  11 DEC 2007 11:19
+entering extended mode
+\write18 enabled.
+**manual.tex
+(./manual.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8d> and hyphenation patterns for american, french, german, ngerman, b
+ahasa, basque, bulgarian, catalan, croatian, czech, danish, dutch, esperanto, e
+stonian, finnish, greek, icelandic, irish, italian, latin, magyar, norsk, polis
+h, portuges, romanian, russian, serbian, slovak, slovene, spanish, swedish, tur
+kish, ukrainian, nohyphenation, loaded.
+(/opt/local/share/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2004/02/16 v1.4f Standard LaTeX document class
+(/opt/local/share/texmf-dist/tex/latex/base/size11.clo
+File: size11.clo 2004/02/16 v1.4f Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+)
+(/opt/local/share/texmf-local/tex/latex/html/url.sty
+Package: url 1999/03/02  ver 1.4  Verb mode for urls, email addresses, and file
+ names
+) (./draft.tex)
+\@indexfile=\write3
+\openout3 = `manual.idx'.
+
+
+Writing index file manual.idx
+
+LaTeX Warning: Unused global option(s):
+    [timesroman].
+
+(./manual.aux (./intro.aux) (./arch.aux) (./app.aux) (./examples.aux)
+(./controller.aux) (./manifest.aux))
+\openout1 = `manual.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 23.
+LaTeX Font Info:    ... okay on input line 23.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 25.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 25.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 25.
+ (./revdate.tex) (./manual.toc)
+\tf@toc=\write4
+\openout4 = `manual.toc'.
+
+ [1
+
+
+Non-PDF special ignored!{/opt/local/share/texmf-var/fonts/map/pdftex/updmap/pdf
+tex.map}]
+\openout2 = `intro.aux'.
+
+ (./intro.tex
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <10.95> on input line 5.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <9> on input line 9.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 9.
+
+
+LaTeX Warning: Reference `sec:license' on page 2 undefined on input line 9.
+
+
+LaTeX Warning: Reference `sec:arch' on page 2 undefined on input line 36.
+
+[2
+
+]
+
+LaTeX Warning: Reference `sec:manifest' on page 3 undefined on input line 51.
+
+
+LaTeX Warning: Citation `mtconnect_spec' on page 3 undefined on input line 57.
+
+) [3]
+\openout2 = `arch.aux'.
+
+ (./arch.tex [4
+
+
+]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 82.
+ (/opt/local/share/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 82.
+
+Overfull \hbox (8.31467pt too wide) in paragraph at lines 92--98
+[]\OT1/cmr/m/n/10.95 Machine B is an au-to-matic saw equipped with an MT-Con-ne
+ct -compliant
+ []
+
+[5]
+
+LaTeX Warning: Citation `xpath_tutorial' on page 6 undefined on input line 146.
+
+
+[6]
+Overfull \hbox (13.33461pt too wide) in paragraph at lines 149--160
+\OT1/cmr/m/n/10.95 ment/CNCMill/Axes/YAxis, /Equip-ment/CNCMill/Axes/ZAxis, and
+ /Equip-
+ []
+
+
+Overfull \hbox (75.628pt too wide) in paragraph at lines 149--160
+\OT1/cmr/m/n/10.95 of the above and in ad-di-tion the sep-a-rate ``com-po-nents
+'' /Equip-ment/CNCMill/Temperature
+ []
+
+[7]
+
+LaTeX Warning: Reference `sec:example_client_archiver' on page 8 undefined on i
+nput line 236.
+
+
+LaTeX Warning: Reference `sec:apps' on page 8 undefined on input line 253.
+
+[8] [9]
+
+LaTeX Warning: Reference `sec:apps' on page 10 undefined on input line 328.
+
+
+Overfull \hbox (260.85828pt too wide) in paragraph at lines 366--366
+[] \OT1/cmtt/m/n/10.95 3     <ComponentEvents path="//Machine[@name='machine']/
+/Controller[@name='controller']" name="controller">[] 
+ []
+
+
+Overfull \hbox (42.40814pt too wide) in paragraph at lines 366--366
+[] \OT1/cmtt/m/n/10.95 4       <m:Program timestamp="2007-12-06T02:20:51.938" s
+equence="11">[] 
+ []
+
+
+Overfull \hbox (30.91077pt too wide) in paragraph at lines 366--366
+[] \OT1/cmtt/m/n/10.95 7       <m:Alarm timestamp="2007-12-06T02:20:58.331" seq
+uence="18">[] 
+ []
+
+
+Overfull \hbox (94.14633pt too wide) in paragraph at lines 366--366
+[]\OT1/cmtt/m/n/10.95 11     <ComponentEvents path="//Machine[@name='machine']/
+/Power[@name='Power']"[] 
+ []
+
+
+Overfull \hbox (25.16208pt too wide) in paragraph at lines 366--366
+[]\OT1/cmtt/m/n/10.95 13       <m:Power timestamp="2007-12-06T02:20:51.938" seq
+uence="3">[] 
+ []
+
+[10] [11]) [12]
+\openout2 = `app.aux'.
+
+ (./app.tex
+Overfull \hbox (449.89664pt too wide) in paragraph at lines 18--23
+\OT1/cmr/m/n/10.95 usual HTTP URL argument-embedding rules, as in []\OT1/cmtt/m
+/n/10.95 http://mtc.myshop.mycorp.com/sample?start=1&count=1000&path=/Equipment
+/CNCmill/Controller/Axes 
+ []
+
+[13
+
+
+]) [14]
+\openout2 = `examples.aux'.
+
+ (./examples.tex
+Overfull \hbox (22.36841pt too wide) in paragraph at lines 20--31
+\OT1/cmr/m/n/10.95 el-e-ment match-ing the path /Equip-ment/CNCMill/Controller/
+Axes/XAxis.
+ []
+
+
+Overfull \hbox (53.90552pt too wide) in paragraph at lines 59--59
+[]      \OT1/cmtt/m/n/10.95 x_axis_measurements = agent.Current("/CNCMill/Table
+1/Axes/XAxis");[] 
+ []
+
+
+Overfull \hbox (82.64896pt too wide) in paragraph at lines 59--59
+[]        \OT1/cmtt/m/n/10.95 Console.WriteLine("Value "+meas.ValueAsFloat().to
+String("G")+" at " +[] 
+ []
+
+
+Overfull \hbox (42.40814pt too wide) in paragraph at lines 59--59
+[]                          \OT1/cmtt/m/n/10.95 meas.timestamp.toString("HH:mm:
+ss.ffffff"));[] 
+ []
+
+[15
+
+
+]) [16]
+\openout2 = `controller.aux'.
+
+ (./controller.tex) [17
+
+
+]
+\openout2 = `manifest.aux'.
+
+ (./manifest.tex
+
+! LaTeX Error: Environment code undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.15 \begin{code}
+                 
+? 
+! Emergency stop.
+ ...                                              
+                                                  
+l.15 \begin{code}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+ 
+Here is how much of TeX's memory you used:
+ 386 strings out of 94500
+ 4431 string characters out of 1174972
+ 52593 words of memory out of 1000000
+ 3575 multiletter control sequences out of 10000+50000
+ 10712 words of font info for 38 fonts, out of 500000 for 2000
+ 580 hyphenation exceptions out of 1000
+ 28i,9n,21p,399b,241s stack positions out of 1500i,500n,5000p,200000b,5000s
+PDF statistics:
+ 93 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 1 words of extra memory for PDF output out of 65536
+!  ==> Fatal error occurred, the output PDF file is not finished!
